@@ -99,8 +99,3 @@ insert into Users(id, username, password, fullname, role) values
 ('1','admin', '$2a$10$jzagNFIvXm7H8fJ7enZ3VOW.cyso5ZoXOIoJaCokGYqc66ftm57e.', 'Administrator', 'ADMIN'),
 ('2','user', '$2a$10$Nk9P.umxh0.93yIQyQEcUur/njuoiSmQGm0DmPf4xtJ6YqV5NaQaO', 'User', 'USER'),
 ('3','tyty', '$2a$10$7yS/JNXgBCwJ1IncEppsmeL1cgZ7pn6.5Jenyw5cH9G2dJKRaNR7S', 'Tyty', 'USER');
-/*
-insert into Users(username, password, fullname, role) values('admin', '$2a$10$jzagNFIvXm7H8fJ7enZ3VOW.cyso5ZoXOIoJaCokGYqc66ftm57e.', 'Administrator', 'ADMIN');
-insert into Users(username, password, fullname, role) values('user', '$2a$10$Nk9P.umxh0.93yIQyQEcUur/njuoiSmQGm0DmPf4xtJ6YqV5NaQaO', 'User', 'USER');
-insert into Users(username, password, fullname, role) values('tyty', '$2a$10$7yS/JNXgBCwJ1IncEppsmeL1cgZ7pn6.5Jenyw5cH9G2dJKRaNR7S', 'Tyty', 'USER');
-*/

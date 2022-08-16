@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
@@ -54,6 +55,14 @@ public class LoginController {
         return mav;
     }
 
+    @GetMapping("/logout")
+    @RolesAllowed({"USER", "ADMIN"})
+    public ModelAndView logout() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("login");
+        return mav;
+    }
+/*
     @GetMapping("/app-logout")
     @RolesAllowed({"USER", "ADMIN"})
     public ModelAndView logout() {
@@ -61,7 +70,7 @@ public class LoginController {
         mav.setViewName("login");
         return mav;
     }
-
+*/
 /*
     @GetMapping("secure/article-details")
     public ModelAndView getAllUserArticles() {

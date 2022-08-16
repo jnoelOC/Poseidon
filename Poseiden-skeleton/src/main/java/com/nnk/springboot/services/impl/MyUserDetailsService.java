@@ -28,9 +28,6 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException{
 
-        if(username.isBlank()){
-            throw new UsernameNotFoundException("username was blank.");
-        }
         User user1 = userRepository.findByUsername(username);
 
         if (user1 != null) {

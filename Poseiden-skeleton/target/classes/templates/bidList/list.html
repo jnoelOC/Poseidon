@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<link rel="stylesheet" href="../../../css/bootstrap.min.css" >
 </head>
 <body>
 <div class="container">
@@ -14,16 +14,9 @@
 			<a href="/curvePoint/list">Curve Points</a>&nbsp;|&nbsp;
 			<a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
 			<a href="/trade/list">Trade</a>&nbsp;|&nbsp;
-			<a href="/ruleName/list">Rule</a>
-<!--			<div th:object="${session.user}">-->
-<!--				<span th:text="*{admin == ('Admin'||'admin')}?  : #{default.username})">&nbsp;|&nbsp;<a href="/user/list">Users</a></span>-->
-<!--			</div>
-			<div th:if="${session.user.admin} == ${#httpServletRequest.remoteUser}">
-				<span>&nbsp;|&nbsp;<a href="/user/list">Users</a></span>
-			</div>-->
-			<div th:if="${session.user.isAdmin()} == true">
-				<span>&nbsp;|&nbsp;<a href="/user/list">Users</a></span>
-			</div>
+			<a href="/ruleName/list">Rule</a>&nbsp;|&nbsp;
+			<a th:if="${#httpServletRequest.remoteUser}=='admin'" href="/user/list">Users</a>
+			<!--<div th:if="${session.user.isAdmin()}">-->
 		</div>
 		<div class="col-6 text-right">
 			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
