@@ -5,8 +5,6 @@ e
 5src/main/java/com/nnk/springboot/domain/RuleName.java,c\0\c0046854ae7422e7bb1577986e0c3e5131c64bc5
 c
 3src/main/java/com/nnk/springboot/domain/Rating.java,6\c\6cb48828df53d09c8ddbb7fb047a51c86b24018d
-g
-7src/main/java/com/nnk/springboot/domain/CurvePoint.java,2\9\298ff84a020f9e8bbde66719eeffc8a8325a2b68
 b
 2src/main/java/com/nnk/springboot/domain/Trade.java,0\2\024e5245ca1973836d3628099132acc12b578c60
 w
@@ -15,8 +13,6 @@ u
 Esrc/main/java/com/nnk/springboot/repositories/RuleNameRepository.java,2\5\25b9890d3a04ae94f136f3f0b1f82f99a9df72eb
 r
 Bsrc/main/java/com/nnk/springboot/repositories/TradeRepository.java,4\e\4ef6ba85548d8d4a32724db22424bab1525f9ce0
-d
-4src/main/java/com/nnk/springboot/domain/BidList.java,1\6\1680adec72ab1e84798a065f2969083b9a6549fa
 n
 >src/main/java/com/nnk/springboot/services/IBidListService.java,9\7\9755a1b1f01aadf1cd5254489f36a6cbfd6ed7cb
 t
@@ -35,9 +31,5 @@ Isrc/test/java/com/nnk/springboot/TU/service/MyUserDetailsServiceTest.java,c\a\
 .src/test/java/com/nnk/springboot/BidTests.java,7\8\781ef7900f2d2faf5e0feeea4c000da110dd745f
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-r
-Bsrc/main/java/com/nnk/springboot/services/impl/BidListService.java,7\6\7627ef6a44e553eb22afbe0ac7b7a28a50fb8d0b
-a
-1src/main/java/com/nnk/springboot/domain/User.java,0\f\0ffb8d668738e3d8b88cd4f2f5424aa52e3220e8
 e
 5src/test/java/com/nnk/springboot/CurvePointTests.java,3\0\30e211a99c720f03f21feee0f63c1c3cfb3a603d

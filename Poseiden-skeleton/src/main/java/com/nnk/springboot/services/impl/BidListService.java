@@ -17,4 +17,10 @@ public class BidListService implements IBidListService {
     public List<BidList> findAllBids() {
         return bidListRepository.findAll();
     }
+
+    public BidList findById(Integer id) {return bidListRepository.findById(id).get(); }
+
+    public BidList saveBidList(BidList bid){ return bidListRepository.save(bid); }
+
+    public void deleteBidList(BidList bid){ bidListRepository.delete(bid); }
 }

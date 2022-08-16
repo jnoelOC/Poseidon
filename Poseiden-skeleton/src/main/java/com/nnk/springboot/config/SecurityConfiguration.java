@@ -104,7 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Value("${spring.security.debug:true}")
+    @Value("${spring.security.debug:false}")
     boolean securityDebug;
 
     @Override

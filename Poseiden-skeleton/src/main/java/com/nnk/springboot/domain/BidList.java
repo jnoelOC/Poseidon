@@ -11,11 +11,10 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "bidlist")
 public class BidList {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="BIDLISTID", unique=true, nullable=false)
-    private Integer BidListId;
+    private Integer bidListId;
     @NotBlank(message = "account is mandatory")
     @Column(name="ACCOUNT", nullable=false, length=30)
     private String account;
@@ -61,18 +60,45 @@ public class BidList {
     @Column(name="SIDE", length=125)
     private String side;
 
+    public BidList(){}
+
     public BidList(String account, String type, Double bidQuantity) {
         this.account = account;
         this.type = type;
         this.bidQuantity = bidQuantity;
     }
 
+    public BidList(Integer bidListId, String account, String type, Double bidQuantity, Double askQuantity, Double bid, Double ask, String benchmark, Timestamp bidListDate, String commentary, String security, String status, String trader, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
+        this.bidListId = bidListId;
+        this.account = account;
+        this.type = type;
+        this.bidQuantity = bidQuantity;
+        this.askQuantity = askQuantity;
+        this.bid = bid;
+        this.ask = ask;
+        this.benchmark = benchmark;
+        this.bidListDate = bidListDate;
+        this.commentary = commentary;
+        this.security = security;
+        this.status = status;
+        this.trader = trader;
+        this.book = book;
+        this.creationName = creationName;
+        this.creationDate = creationDate;
+        this.revisionName = revisionName;
+        this.revisionDate = revisionDate;
+        this.dealName = dealName;
+        this.dealType = dealType;
+        this.sourceListId = sourceListId;
+        this.side = side;
+    }
+
     public Integer getBidListId() {
-        return BidListId;
+        return bidListId;
     }
 
     public void setBidListId(Integer bidListId) {
-        BidListId = bidListId;
+        this.bidListId = bidListId;
     }
 
     public String getAccount() {
