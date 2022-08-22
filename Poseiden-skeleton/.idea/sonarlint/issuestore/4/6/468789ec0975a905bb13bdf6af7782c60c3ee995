@@ -1,0 +1,9 @@
+
+s
+java:S1128"]Remove this unused import 'org.springframework.data.jpa.repository.JpaSpecificationExecutor'.(ñÑ‹¡
+e
+java:S1128"JRemove this unused import 'org.springframework.data.jpa.repository.Query'.(Äºöïþÿÿÿÿ
+j
+java:S1128"ORemove this unused import 'org.springframework.data.repository.CrudRepository'.(Îê¶¬üÿÿÿÿ
+b
+java:S1128"LRemove this unused import 'org.springframework.data.repository.query.Param'.(©”šô

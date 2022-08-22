@@ -1,0 +1,30 @@
+
+m
+java:S1192="RDefine a constant instead of duplicating this literal "curvePoint/update" 4 times.(”àÁŽýÿÿÿÿ
+u
+java:S11922"ZDefine a constant instead of duplicating this literal "redirect:/curvePoint/list" 3 times.(çé‚Åþÿÿÿÿ
+l
+java:S1192$"ODefine a constant instead of duplicating this literal "curvePoint/add" 3 times.(¨ŒÖû8ùðÿ­¬0
+g
+java:S1192"LDefine a constant instead of duplicating this literal "curvePoints" 4 times.(¨¸Âœúÿÿÿÿ
+H
+java:S1135"2Complete the task associated to this TODO comment.(ÖŽæ²
+M
+java:S1135"2Complete the task associated to this TODO comment.(Ñ”û¡ùÿÿÿÿ
+V
+java:S4684("@Replace this persistent entity with a simple POJO or DTO object.(Ä§è¢
+M
+java:S1135)"2Complete the task associated to this TODO comment.(—×“ûüÿÿÿÿ
+H
+java:S11359"2Complete the task associated to this TODO comment.(Êä‡Ø
+Q	java:S125:"<This block of commented-out lines of code should be removed.(Þãåã
+V
+java:S4684A"@Replace this persistent entity with a simple POJO or DTO object.(ŸÇŸé
+M
+java:S1135C"2Complete the task associated to this TODO comment.(êÇÀ»ùÿÿÿÿ
+H
+java:S1135Z"2Complete the task associated to this TODO comment.(Úá—ú
+P	java:S125]"<This block of commented-out lines of code should be removed.(Œž¹0
+>	java:S108a")Either remove or fill this block of code.(…‰”Ï
+Y
+java:S1128">Remove this unused import 'com.nnk.springboot.domain.BidList'.(ÞÉµ‘ùÿÿÿÿ

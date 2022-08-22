@@ -15,7 +15,7 @@ public class CurvePoint {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID", unique=true, nullable=false)
     private Integer id;
-    @Column(name="CURVEID")
+    @Column(name="CURVEID", nullable=false)
     private Integer curveId;
     @Column(name="ASOFDATE")
     private Timestamp asOfDate;
@@ -26,6 +26,8 @@ public class CurvePoint {
     @Column(name="CREATIONDATE")
     private Timestamp creationDate;
 
+    public CurvePoint() {
+    }
     public CurvePoint(Integer id, Double term, Double value) {
         this.id = id;
         this.term = term;

@@ -1,0 +1,33 @@
+
+l
+java:S11923"WDefine a constant instead of duplicating this literal "redirect:/bidList/list" 3 times.(ò·¸.
+j
+java:S1192>"ODefine a constant instead of duplicating this literal "bidList/update" 3 times.(Ñ•ååÿÿÿÿÿ
+^
+java:S1192="HDefine a constant instead of duplicating this literal "bidList" 3 times.(¼Ä–¶
+M
+java:S1135"2Complete the task associated to this TODO comment.(ÃÝ€ùûÿÿÿÿ
+H
+java:S1135"2Complete the task associated to this TODO comment.(…øˆ‹
+[
+java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(”¡Ô¥øÿÿÿÿ
+[
+java:S4684+"@Replace this persistent entity with a simple POJO or DTO object.(‘¦Áíýÿÿÿÿ
+H
+java:S1135,"2Complete the task associated to this TODO comment.(Ê„…Ï
+P	java:S125."<This block of commented-out lines of code should be removed.(ÕéÍ_
+M
+java:S1135:"2Complete the task associated to this TODO comment.(Þ‚°þÿÿÿÿ
+Q	java:S125;"<This block of commented-out lines of code should be removed.(íËå«
+V
+java:S4684B"@Replace this persistent entity with a simple POJO or DTO object.(¶™ÿâ
+G
+java:S1135D"2Complete the task associated to this TODO comment.(‚¨ü$
+H
+java:S1135U"2Complete the task associated to this TODO comment.(þ„ú²
+P	java:S125X"<This block of commented-out lines of code should be removed.(Œž¹0
+>	java:S108\")Either remove or fill this block of code.(…‰”Ï
+Q
+java:S1128";Remove this unused import 'com.nnk.springboot.domain.User'.(§‘£¼
+x
+java:S1128"]Remove this unused import 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder'.(åÅÚ…ûÿÿÿÿ
