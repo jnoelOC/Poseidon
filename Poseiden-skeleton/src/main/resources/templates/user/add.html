@@ -12,7 +12,7 @@
 	<div class="row">
 		<h2>Add New User</h2>
 	</div>
-
+	<h4 style=color:red th:text="${errorMsg}"></h4>
 	<div class="row">
 		<form action="#" th:action="@{/user/validate}" th:object="${user}" method="post" class="form-horizontal" style="width: 100%">
 			<div class="form-group">

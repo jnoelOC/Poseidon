@@ -22,8 +22,9 @@
 			<div class="mb-3">
 				<label for="curveId" class="form-label">Curve Id</label>
 				<input type="number" class="form-control" id="curveId" name="curveId" placeholder="Curve Id">
+				<h4 style=color:red th:text="${errorMsg}"></h4>
 			</div>
-			<h2 style=text-align:center th:text="${errorMsg}"></h2>
+
 			<div class="mb-3">
 				<label for="term" class="form-label">Term</label>
 				<input type="number" class="form-control" id="term" name="term" placeholder="Type">

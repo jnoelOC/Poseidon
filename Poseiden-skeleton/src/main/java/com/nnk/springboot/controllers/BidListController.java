@@ -3,6 +3,8 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.services.impl.BidListService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import java.util.List;
 public class BidListController {
     // TODO: Inject Bid service
 
+    public static final Logger logger = LogManager.getLogger(BidListController.class);
+
     @Autowired
     private BidListService bidListService;
 
@@ -30,7 +34,7 @@ public class BidListController {
         // TODO: call service find all bids to show to the view
         List<BidList> bids = bidListService.findAllBids();
         model.addAttribute("bids", bids);
-
+        logger.info("Requête de Read de BidList");
         return "bidList/list";
     }
 
@@ -42,12 +46,23 @@ public class BidListController {
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
+
+        if(bid.getAccount().isBlank()){
+            model.addAttribute("errorMsgAccount", "Account is mandatory");
+            return "bidList/add";
+        }
+        if(bid.getType().isBlank()){
+            model.addAttribute("errorMsgType", "Type is mandatory");
+            return "bidList/add";
+        }
+
         if (!result.hasErrors()) {
 //            bid.setAccount("account1");
 //            bid.setType("type1");
 //            bid.setBidQuantity(11D);
             bidListService.saveBidList(bid);
             model.addAttribute("bids", bidListService.findAllBids());
+            logger.info("Requête de Add de BidList");
             return "redirect:/bidList/list";
         }
         return "bidList/add";
@@ -67,6 +82,15 @@ public class BidListController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
 
+        if(bidList.getAccount().isBlank()){
+            model.addAttribute("errorMsgAccount", "Account is mandatory");
+            return "bidList/update";
+        }
+        if(bidList.getType().isBlank()){
+            model.addAttribute("errorMsgType", "Type is mandatory");
+            return "bidList/update";
+        }
+
         if (result.hasErrors()) {
             return "bidList/update";
         }
@@ -77,6 +101,7 @@ public class BidListController {
             return "bidList/update";
         }
         model.addAttribute("bidList", bidListService.findAllBids());
+        logger.info("Requête de Update de BidList");
         return "redirect:/bidList/list";
     }
 
@@ -87,6 +112,7 @@ public class BidListController {
             BidList bidList = bidListService.findById(id);
             //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
             bidListService.deleteBidList(bidList);
+            logger.info("Requête de Delete de BidList");
             model.addAttribute("bidList", bidListService.findAllBids());
         }
         catch(Exception ex){

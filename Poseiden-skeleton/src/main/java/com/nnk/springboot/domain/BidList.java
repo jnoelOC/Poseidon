@@ -15,10 +15,10 @@ public class BidList {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="BIDLISTID", unique=true, nullable=false)
     private Integer bidListId;
-    @NotBlank(message = "account is mandatory")
+//    @NotBlank(message = "account is mandatory")
     @Column(name="ACCOUNT", nullable=false, length=30)
     private String account;
-    @NotBlank(message = "type is mandatory")
+ //   @NotBlank(message = "type is mandatory")
     @Column(name="TYPE", nullable=false, length=30)
     private String type;
     @Column(name="BIDQUANTITY")

@@ -18,10 +18,32 @@
 			<!--
 			TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
 			 -->
-
+			<div class="mb-3">
+				<label for="account" class="form-label">Account</label>
+				<input type="text" class="form-control" id="account" name="account" placeholder="Account">
+			</div>
+			<div class="mb-3">
+				<label for="type" class="form-label">Type</label>
+				<input type="text" class="form-control" id="type" name="type" placeholder="Type">
+			</div>
+			<div class="mb-3">
+				<label for="buyQuantity" class="form-label">Buy quantity</label>
+				<input type="text" class="form-control" id="buyQuantity" name="buyQuantity" placeholder="Buy quantity">
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<a class="btn btn-danger btn-sm" href="/trade/list">Cancel</a>
+					<input class="btn btn-primary btn-sm" type="submit" value="Add trade">
+				</div>
+			</div>
 		</form>
 	</div>
 
 </div>
+<footer>
+	<div style="text-align:center">
+		<a href="/logout"> <img src="/img/logo.png" alt="Poseidon" width="128" height="88"></a>
+	</div>
+</footer>
 </body>
 </html>

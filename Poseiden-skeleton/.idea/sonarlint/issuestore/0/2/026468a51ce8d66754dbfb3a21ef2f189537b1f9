@@ -1,30 +1,42 @@
 
 m
-java:S1192="RDefine a constant instead of duplicating this literal "curvePoint/update" 4 times.(”àÁŽýÿÿÿÿ
+java:S1192I"RDefine a constant instead of duplicating this literal "curvePoint/update" 5 times.(”àÁŽýÿÿÿÿ
 u
-java:S11922"ZDefine a constant instead of duplicating this literal "redirect:/curvePoint/list" 3 times.(çé‚Åþÿÿÿÿ
-l
-java:S1192$"ODefine a constant instead of duplicating this literal "curvePoint/add" 3 times.(¨ŒÖû8ùðÿ­¬0
+java:S1192>"ZDefine a constant instead of duplicating this literal "redirect:/curvePoint/list" 3 times.(çé‚Åþÿÿÿÿ
+e
+java:S1192*"ODefine a constant instead of duplicating this literal "curvePoint/add" 4 times.(¨ŒÖû
 g
-java:S1192"LDefine a constant instead of duplicating this literal "curvePoints" 4 times.(¨¸Âœúÿÿÿÿ
+java:S1192#"LDefine a constant instead of duplicating this literal "curvePoints" 4 times.(¨¸Âœúÿÿÿÿ
+l
+java:S11922"QDefine a constant instead of duplicating this literal "must not be null" 4 times.(«Ž­·úÿÿÿÿ
+d
+java:S11922"IDefine a constant instead of duplicating this literal "errorMsg" 4 times.(«Ž­·úÿÿÿÿ
+S
+java:S2589Q"8Remove this expression which always evaluates to "false"(åÄˆÔþÿÿÿÿ
+S
+java:S25891"8Remove this expression which always evaluates to "false"(åÄˆÔþÿÿÿÿ
 H
-java:S1135"2Complete the task associated to this TODO comment.(ÖŽæ²
+java:S1135"2Complete the task associated to this TODO comment.(ÖŽæ²
 M
-java:S1135"2Complete the task associated to this TODO comment.(Ñ”û¡ùÿÿÿÿ
+java:S1135!"2Complete the task associated to this TODO comment.(Ñ”û¡ùÿÿÿÿ
+U
+java:S4684."@Replace this persistent entity with a simple POJO or DTO object.(è¦Úg
+M
+java:S1135/"2Complete the task associated to this TODO comment.(—×“ûüÿÿÿÿ
+H
+java:S1135E"2Complete the task associated to this TODO comment.(Êä‡Ø
+Q	java:S125F"<This block of commented-out lines of code should be removed.(Þãåã
 V
-java:S4684("@Replace this persistent entity with a simple POJO or DTO object.(Ä§è¢
+java:S4684M"@Replace this persistent entity with a simple POJO or DTO object.(ŸÇŸé
 M
-java:S1135)"2Complete the task associated to this TODO comment.(—×“ûüÿÿÿÿ
+java:S1135O"2Complete the task associated to this TODO comment.(êÇÀ»ùÿÿÿÿ
 H
-java:S11359"2Complete the task associated to this TODO comment.(Êä‡Ø
-Q	java:S125:"<This block of commented-out lines of code should be removed.(Þãåã
-V
-java:S4684A"@Replace this persistent entity with a simple POJO or DTO object.(ŸÇŸé
-M
-java:S1135C"2Complete the task associated to this TODO comment.(êÇÀ»ùÿÿÿÿ
-H
-java:S1135Z"2Complete the task associated to this TODO comment.(Úá—ú
-P	java:S125]"<This block of commented-out lines of code should be removed.(Œž¹0
->	java:S108a")Either remove or fill this block of code.(…‰”Ï
+java:S1135m"2Complete the task associated to this TODO comment.(Úá—ú
+P	java:S125p"<This block of commented-out lines of code should be removed.(Œž¹0
+>	java:S108u")Either remove or fill this block of code.(…‰”Ï
 Y
 java:S1128">Remove this unused import 'com.nnk.springboot.domain.BidList'.(ÞÉµ‘ùÿÿÿÿ
+_
+java:S1128"IRemove this unused import 'com.nnk.springboot.services.impl.UserService'.(¿°€¾
+q
+java:S1128"[Remove this unused import 'org.springframework.web.servlet.mvc.support.RedirectAttributes'.(ìçÚË

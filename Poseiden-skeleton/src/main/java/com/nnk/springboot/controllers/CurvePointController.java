@@ -3,6 +3,9 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.services.impl.CurvePointService;
+import com.nnk.springboot.services.impl.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,9 @@ import java.util.List;
 @Controller
 public class CurvePointController {
     // TODO: Inject Curve Point service
+
+    public static final Logger logger = LogManager.getLogger(CurvePointController.class);
+
     @Autowired
     private CurvePointService curvePointService;
 
@@ -27,7 +33,7 @@ public class CurvePointController {
         // TODO: find all Curve Point, add to model
         List<CurvePoint> curvePoints = curvePointService.findAllCurvePoints();
         model.addAttribute("curvePoints", curvePoints);
-
+        logger.info("Requête de Liste de CurvePoint");
         return "curvePoint/list";
     }
 
@@ -37,15 +43,21 @@ public class CurvePointController {
     }
 
     @PostMapping("/curvePoint/validate")
-    public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model, RedirectAttributes ra) {
+    public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list
-        if(curvePoint.getCurveId() <= 0) {
-            ra.addFlashAttribute("errorMsg", "must not be null");
+        try {
+            if (curvePoint.getCurveId() <= 0 || curvePoint == null) {
+                model.addAttribute("errorMsg", "must not be null");
+                return "curvePoint/add";
+            }
+        }catch(Exception ex){
+            logger.error(ex.getMessage());
+            model.addAttribute("errorMsg", "must not be null");
             return "curvePoint/add";
         }
-
         if (!result.hasErrors()) {
             curvePointService.saveCurvePoint(curvePoint);
+            logger.info("Requête de Create de CurvePoint");
             model.addAttribute("curvePoints", curvePointService.findAllCurvePoints());
             return "redirect:/curvePoint/list";
         }
@@ -63,15 +75,21 @@ public class CurvePointController {
 
     @PostMapping("/curvePoint/update/{id}")
     public String updateCP(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
-                             BindingResult result, Model model, RedirectAttributes ra) {
+                             BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
-
-        if(curvePoint.getCurveId() <= 0) {
-            ra.addFlashAttribute("errorMsg", "must not be null");
+        try{
+            if(curvePoint.getCurveId() <= 0 || curvePoint == null) {
+                model.addAttribute("errorMsg", "must not be null");
+                return "curvePoint/update";
+            }
+        }catch(NullPointerException ex){
+            logger.error(ex.getMessage());
+            model.addAttribute("errorMsg", "must not be null");
             return "curvePoint/update";
         }
 
         if (result.hasErrors()) {
+            logger.error(result.getFieldErrors());
             return "curvePoint/update";
         }
         curvePoint.setId(id);
@@ -82,6 +100,7 @@ public class CurvePointController {
         }
 
         model.addAttribute("curvePoints", curvePointService.findAllCurvePoints());
+        logger.info("Requête de Update de CurvePoint");
         return "redirect:/curvePoint/list";
     }
 
@@ -92,6 +111,7 @@ public class CurvePointController {
             CurvePoint curvePoint = curvePointService.findById(id);
             //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
             curvePointService.deleteCurvePoint(curvePoint);
+            logger.info("Requête de Delete de CurvePoint");
             model.addAttribute("curvePoints", curvePointService.findAllCurvePoints());
         }
         catch(Exception ex){

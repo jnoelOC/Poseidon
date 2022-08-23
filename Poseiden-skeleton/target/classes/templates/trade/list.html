@@ -13,7 +13,7 @@
 
 	<div class="row"><h2>Trade List</h2></div>
 	<div class="row">
-		<a href="/trade/add" class="btn btn-primary btn-sm">Add New</a>
+		<a href="/trade/add" class="w-25 btn btn-primary btn-sm">Add New</a>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -26,9 +26,24 @@
 			</thead>
 			<tbody>
 			<!-- TODO: Show all Trade to the table, the Action column will have Edit & Delete buttons -->
+			<tr th:each="trade : ${trades}">
+				<td th:text="${trade.tradeId}"></td>
+				<td th:text="${trade.account}"></td>
+				<td th:text="${trade.type}"></td>
+				<td th:text="${trade.buyQuantity}"></td>
+				<td style="width: 15%" class="text-center">
+					<a th:href="@{/trade/update/{tradeId}(tradeId=${trade.tradeId})}">Edit</a>&nbsp;|&nbsp;
+					<a th:href="@{/trade/delete/{tradeId}(tradeId=${trade.tradeId})}">Delete</a>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
+<footer>
+	<div style="text-align:center">
+		<a href="/logout"> <img src="/img/logo.png" alt="Poseidon" width="128" height="88"></a>
+	</div>
+</footer>
 </body>
 </html>

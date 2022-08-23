@@ -38,6 +38,11 @@ public class UserController {
 
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
+
+        if(user.getUsername().isBlank() || user.getFullname().isBlank() || user.getPassword().isBlank() || user.getRole().isBlank()){
+            model.addAttribute("errorMsg", "Each field is mandatory");
+            return "user/add";
+        }
         if (!result.hasErrors()) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
@@ -59,6 +64,12 @@ public class UserController {
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") Integer id, @Valid User user,
                              BindingResult result, Model model) {
+
+        if(user.getUsername().isBlank() || user.getFullname().isBlank() || user.getPassword().isBlank() || user.getRole().isBlank()){
+            model.addAttribute("errorMsg", "Each field is mandatory");
+            return "user/update";
+        }
+
         if (result.hasErrors()) {
             return "user/update";
         }

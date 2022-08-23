@@ -26,14 +26,7 @@ import javax.validation.constraints.NotNull;
 public class LoginController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private BidListService bidListService;
-
-
-    @Autowired
-    private BidListRepository bidListRepository;
 
     @GetMapping("/login")
     @RolesAllowed({"USER", "ADMIN"})

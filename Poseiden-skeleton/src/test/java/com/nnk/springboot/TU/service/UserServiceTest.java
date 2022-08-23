@@ -1,23 +1,23 @@
 package com.nnk.springboot.TU.service;
 
+import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
-import com.nnk.springboot.services.impl.MyUserDetailsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class MyUserDetailsServiceTest {
+public class UserServiceTest {
     // To be tested
     @InjectMocks
-    private MyUserDetailsService myUserDetailsService;
+    private com.nnk.springboot.services.impl.UserService userService;
 
     @Mock
     private UserRepository userRepository;
@@ -27,13 +27,13 @@ public class MyUserDetailsServiceTest {
     void FindLoginInError_ShouldReturnFalse() {
         // Arrange
         Boolean ret = true;
-        UserDetails userDetails;
         String username = "inconnu";
         // Act
-        userDetails = myUserDetailsService.loadUserByUsername(username);
-        if (userDetails == null) {
+        com.nnk.springboot.domain.User u1 = userService.findByUsername(username);
+        if (u1 == null) {
             ret = false;
         }
+
         // Assert
         assertFalse(ret);
     }
@@ -42,31 +42,19 @@ public class MyUserDetailsServiceTest {
     @DisplayName("find login in success")
     void FindLoginInSuccess_ShouldReturnTrue() {
         // Arrange
-        Boolean ret = false;
-        UserDetails userDetails;
+        Boolean ret = true;
         String username = "user";
+        User user = new User(username, "$2a$10$Nk9P.umxh0.93yIQyQEcUur/njuoiSmQGm0DmPf4xtJ6YqV5NaQaO", "USER");
+
+        when(userRepository.findByUsername(username)).thenReturn(user);
         // Act
-        userDetails = myUserDetailsService.loadUserByUsername(username);
-        if (userDetails != null) {
-            ret = true;
+        com.nnk.springboot.domain.User u1 = userService.findByUsername(username);
+        if (u1 == null) {
+            ret = false;
         }
         // Assert
         assertTrue(ret);
     }
 
-    @Test
-    @DisplayName("find admin login in success")
-    void FindAdminLoginInSuccess_ShouldReturnTrue() {
-        // Arrange
-        Boolean ret = false;
-        UserDetails userDetails;
-        String username = "admin";
-        // Act
-        userDetails = myUserDetailsService.loadUserByUsername(username);
-        if (userDetails != null) {
-            ret = true;
-        }
-        // Assert
-        assertTrue(ret);
-    }
+
 }

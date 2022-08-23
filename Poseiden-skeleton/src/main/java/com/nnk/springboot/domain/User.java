@@ -1,11 +1,13 @@
 package com.nnk.springboot.domain;
 
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User { //implements Validator {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID", unique=true, nullable=false)

@@ -1,11 +1,15 @@
 
 p
-java:S4144<"UUpdate this method so that its implementation is not identical to "login" on line 40.(ïŠ‚†ÿÿÿÿÿ
-Q	java:S1254"<This block of commented-out lines of code should be removed.(ÏüÊ
-V	java:S125D"<This block of commented-out lines of code should be removed.(ïŠ‚†ÿÿÿÿÿ
-V	java:S125L"<This block of commented-out lines of code should be removed.(ÒòÌ’úÿÿÿÿ
+java:S41445"UUpdate this method so that its implementation is not identical to "login" on line 33.(ïŠ‚†ÿÿÿÿÿ
+Q	java:S125-"<This block of commented-out lines of code should be removed.(ÏüÊ
+V	java:S125="<This block of commented-out lines of code should be removed.(ïŠ‚†ÿÿÿÿÿ
+V	java:S125E"<This block of commented-out lines of code should be removed.(ÒòÌ’úÿÿÿÿ
 Q
 java:S1128";Remove this unused import 'com.nnk.springboot.domain.User'.(§‘£¼
+k
+java:S1128"NRemove this unused import 'com.nnk.springboot.repositories.BidListRepository'.(“Ë²à8şĞªÕ¬0
+h
+java:S1128"KRemove this unused import 'com.nnk.springboot.repositories.UserRepository'.(şõÍ™8Ùğ©Õ¬0
 _
 java:S1128"IRemove this unused import 'com.nnk.springboot.services.impl.UserService'.(¿°€¾
 g

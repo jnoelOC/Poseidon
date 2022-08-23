@@ -84,7 +84,7 @@ public class RuleName {
     }
 
     public String getSqlPart() {
-        return sqlPart;
+        return this.sqlPart;
     }
 
     public void setSqlPart(String sqlPart) {
