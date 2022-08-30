@@ -1,7 +1,0 @@
-
-r
-java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(þ¥°’ýÿÿÿÿ8ç¶ƒ¯¬0
-`
-java:S1128">Remove this unused import 'com.nnk.springboot.domain.BidList'.(ÞÉµ‘ùÿÿÿÿ8÷„‡¯¬0
-k
-java:S1128"NRemove this unused import 'com.nnk.springboot.repositories.BidListRepository'.(“Ë²à8÷„‡¯¬0
