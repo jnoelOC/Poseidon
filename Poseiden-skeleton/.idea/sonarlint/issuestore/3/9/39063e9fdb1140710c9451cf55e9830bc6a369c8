@@ -1,0 +1,30 @@
+
+w
+java:S4144:"UUpdate this method so that its implementation is not identical to "login" on line 33.(ïŠ‚†ÿÿÿÿÿ8°ë›ô°0
+X	java:S125("<This block of commented-out lines of code should be removed.(â‰œŸ8ÊÖ›ô°0
+X	java:S1252"<This block of commented-out lines of code should be removed.(ÏüŽÊ8·ë›ô°0
+]	java:S125D"<This block of commented-out lines of code should be removed.(ïŠ‚†ÿÿÿÿÿ8¹ë›ô°0
+V	java:S125L"<This block of commented-out lines of code should be removed.(ÒòÌ’úÿÿÿÿ
+X
+java:S1128";Remove this unused import 'com.nnk.springboot.domain.User'.(§‘£¼8ÕÊ§í®0
+k
+java:S1128"NRemove this unused import 'com.nnk.springboot.repositories.BidListRepository'.(“Ë²à8ÕÊ§í®0
+h
+java:S1128"KRemove this unused import 'com.nnk.springboot.repositories.UserRepository'.(þõÍ™8ÖÊ§í®0
+f
+java:S1128"IRemove this unused import 'com.nnk.springboot.services.impl.UserService'.(¿°€¾8ÖÊ§í®0
+n
+java:S1128	"LRemove this unused import 'org.springframework.security.web.csrf.CsrfToken'.( žòçøÿÿÿÿ8ÖÊ§í®0
+h
+java:S1128
+"FRemove this unused import 'org.springframework.stereotype.Controller'.(øŠ—Öùÿÿÿÿ8×Ê§í®0
+k
+java:S1128"IRemove this unused import 'org.springframework.validation.BindingResult'.(‹¶¸ùÿÿÿÿ8×Ê§í®0
+p
+java:S1128"SRemove this unused import 'org.springframework.web.bind.annotation.RequestMapping'.(ö»¿ë8×Ê§í®0
+x
+java:S1128"[Remove this unused import 'org.springframework.web.servlet.mvc.support.RedirectAttributes'.(ìçÚË8×Ê§í®0
+U
+java:S1128"3Remove this unused import 'javax.validation.Valid'.(æ¤ñ÷úÿÿÿÿ8ØÊ§í®0
+c
+java:S1128"ARemove this unused import 'javax.validation.constraints.NotNull'.(áç¥ãüÿÿÿÿ8ØÊ§í®0
