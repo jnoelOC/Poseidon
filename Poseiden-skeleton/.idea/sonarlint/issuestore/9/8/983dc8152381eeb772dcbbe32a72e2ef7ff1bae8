@@ -1,0 +1,13 @@
+
+H
+java:S1168"+Return an empty collection instead of null.(¥¹ï8û›æË®0
+]
+java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(±Š”´8“ãË®0
+^
+java:S34579"AFormat specifiers should be used instead of string concatenation.(ÿ¹Äñ8–“ãË®0
+b
+java:S4684C"@Replace this persistent entity with a simple POJO or DTO object.(úçñ‹şÿÿÿÿ8™“ãË®0
+_
+java:S1128"=Remove this unused import 'com.nnk.springboot.domain.Rating'.(ëê‹³şÿÿÿÿ8ßñêë®0
+d
+java:S1128"GRemove this unused import 'com.nnk.springboot.services.IRatingService'.(¸£8ßñêë®0

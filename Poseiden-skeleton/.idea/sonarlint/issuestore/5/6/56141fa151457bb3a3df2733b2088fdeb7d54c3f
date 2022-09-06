@@ -1,0 +1,13 @@
+
+_
+java:S1192("IDefine a constant instead of duplicating this literal "user/add" 3 times.(ßº­Ò
+b
+java:S1192B"LDefine a constant instead of duplicating this literal "user/update" 4 times.(«¿€
+o
+java:S11927"TDefine a constant instead of duplicating this literal "redirect:/user/list" 3 times.(çùÖ©üÿÿÿÿ
+\
+java:S1192""FDefine a constant instead of duplicating this literal "users" 4 times.(ÊåĞş
+P	java:S125?"<This block of commented-out lines of code should be removed.(Œ¹0
+P	java:S125`"<This block of commented-out lines of code should be removed.(Œ¹0
+>	java:S108d")Either remove or fill this block of code.(…‰”Ï
+Q	java:S125o"<This block of commented-out lines of code should be removed.(şÿ‹‰

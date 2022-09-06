@@ -1,9 +1,10 @@
 package com.nnk.springboot.domain;
 
-import org.springframework.validation.Validator;
+//import org.springframework.validation.Validator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -11,7 +12,7 @@ public class User { //implements Validator {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID", unique=true, nullable=false)
-    private Integer id;
+    private Long id;
     @NotBlank(message = "Username is mandatory")
     @Column(name="USERNAME", nullable=false, length=125)
     private String username;
@@ -25,6 +26,17 @@ public class User { //implements Validator {
     @Column(name="ROLE", nullable=false, length=125)
     private String role;
 
+    private String imageUrl;
+    @Column(nullable = false)
+    private Boolean emailVerified = false;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    private String providerId;
+
+
     public User() {
     }
 
@@ -33,8 +45,7 @@ public class User { //implements Validator {
         this.password = password;
         this.role = role;
     }
-
-    public User(Integer id, String username, String password, String fullname, String role) {
+    public User(Long id, String username, String password, String fullname, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -42,11 +53,23 @@ public class User { //implements Validator {
         this.role = role;
     }
 
-    public Integer getId() {
+    public User(Long id, String username, String password, String fullname, String role, String imageUrl, Boolean emailVerified, AuthProvider provider, String providerId) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.role = role;
+        this.imageUrl = imageUrl;
+        this.emailVerified = emailVerified;
+        this.provider = provider;
+        this.providerId = providerId;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,4 +104,36 @@ public class User { //implements Validator {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+    public AuthProvider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
+    }
+
+    public String getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
+    }
+
 }

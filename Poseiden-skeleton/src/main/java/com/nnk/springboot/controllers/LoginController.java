@@ -21,7 +21,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-@Controller
+@RestController
 //@RequestMapping("app")
 public class LoginController {
 
@@ -35,7 +35,12 @@ public class LoginController {
         mav.setViewName("login");
         return mav;
     }
-
+/*
+    @GetMapping("/*")
+    public String getGithub() {
+        return "Welcome, github user !";
+    }
+*/
     @PostMapping("/login")
     @RolesAllowed({"USER", "ADMIN"})
     public ModelAndView loginPost(Model model) {
@@ -55,6 +60,8 @@ public class LoginController {
         mav.setViewName("login");
         return mav;
     }
+
+
 /*
     @GetMapping("/app-logout")
     @RolesAllowed({"USER", "ADMIN"})

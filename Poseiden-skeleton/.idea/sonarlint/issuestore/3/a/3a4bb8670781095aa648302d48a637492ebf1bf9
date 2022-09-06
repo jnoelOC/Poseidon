@@ -1,8 +1,4 @@
 
-d
-java:S1192B"GDefine a constant instead of duplicating this literal "/login" 3 times.(ü¢Å8Ş²¸’ª0
-V	java:S125#"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ
-P	java:S125O"<This block of commented-out lines of code should be removed.(¦á­]
-Q	java:S125Z"<This block of commented-out lines of code should be removed.(Ü•ˆæ
-}
-java:S1128"[Remove this unused import 'org.springframework.security.config.http.SessionCreationPolicy'.(‚ÌÎîüÿÿÿÿ8«îÇ‘ª0
+]
+java:S1192E"GDefine a constant instead of duplicating this literal "/login" 4 times.(ü¢Å
+V	java:S125&"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ

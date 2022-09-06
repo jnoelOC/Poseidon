@@ -33,51 +33,20 @@
         </div>
 <!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
         <button class="w-50 btn btn-md btn-primary" type="submit">Log in</button>
-        <p class="mt-5 mb-3 text-muted">© 2022</p>
+
+
     </form>
 </main>
 </div>
-    <!--
-    <div class="container-fluid">
-        <div style="text-align:center">
-            <h3> LOGIN PAGE </h3>
-            <div class="center">
-            <form name='f' th:action="@{/login}" method='POST' >
-                <table>
-                    <tr>
-                        <td>Username:</td>
-                        <td><input type='text' id="username" name='username' value=''></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><input type='password' id="password" name='password' /></td>
-                    </tr>
-                    <tr>
-                        <td><input name="submit" type="submit" value="Submit" /></td>
-                    </tr>
-                </table>
-            </form>
-            </div>
-        </div>
-
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label for="username2" class="form-label">Email</label>
-                <input type="text" class="form-control" id="username2">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-        </form>
-
-    </div> -->
+<form name='f' th:action="@{/login/oauth2/code/github}" method='POST'>
+    <div class="col-6 w-80 m-auto p-5">
+        <button type="submit" class="text-dark w-50 btn btn-primary" id="btnOAuth2Github" name="btnOAuth2Github">Log in with Github</button>
+    </div>
+</form>
 <footer>
     <div style="text-align:center">
-    <a href="/logout"> <img src="/img/logo.png" alt="Poseidon" width="128" height="88"></a>
+        <p class="mt-5 mb-3 text-muted">© 2022</p>
+        <a href="/logout"> <img src="/img/logo.png" alt="Poseidon" width="128" height="88"></a>
     </div>
 </footer>
 </body>
