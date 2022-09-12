@@ -3,8 +3,6 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.exception.ResourceNotFoundException;
 import com.nnk.springboot.repositories.UserRepository;
-import com.nnk.springboot.security.CurrentUser;
-import com.nnk.springboot.security.UserPrincipal;
 import com.nnk.springboot.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -103,12 +101,5 @@ public class UserController {
         return "redirect:/user/list";
     }
 
-
-    @GetMapping("/user/me")
-    @PreAuthorize("hasRole('USER')")
-    public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
-        return userService.findById(Math.toIntExact(userPrincipal.getId()));
-                //.orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
-    }
 
 }

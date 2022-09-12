@@ -6,6 +6,8 @@ import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.impl.BidListService;
 import com.nnk.springboot.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,25 +24,24 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @RestController
-//@RequestMapping("app")
 public class LoginController {
 
     @Autowired
     private BidListService bidListService;
 
     @GetMapping("/login")
-    @RolesAllowed({"USER", "ADMIN"})
+   // @RolesAllowed({"USER", "ADMIN"})
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
         return mav;
     }
-/*
-    @GetMapping("/*")
+
+/*    @RequestMapping("/login/oauth2/code/github")
     public String getGithub() {
         return "Welcome, github user !";
-    }
-*/
+    }*/
+
     @PostMapping("/login")
     @RolesAllowed({"USER", "ADMIN"})
     public ModelAndView loginPost(Model model) {

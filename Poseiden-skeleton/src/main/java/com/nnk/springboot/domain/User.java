@@ -30,9 +30,6 @@ public class User { //implements Validator {
     @Column(nullable = false)
     private Boolean emailVerified = false;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private AuthProvider provider;
 
     private String providerId;
 
@@ -53,7 +50,7 @@ public class User { //implements Validator {
         this.role = role;
     }
 
-    public User(Long id, String username, String password, String fullname, String role, String imageUrl, Boolean emailVerified, AuthProvider provider, String providerId) {
+    public User(Long id, String username, String password, String fullname, String role, String imageUrl, Boolean emailVerified, String providerId) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -61,7 +58,6 @@ public class User { //implements Validator {
         this.role = role;
         this.imageUrl = imageUrl;
         this.emailVerified = emailVerified;
-        this.provider = provider;
         this.providerId = providerId;
     }
 
@@ -119,13 +115,6 @@ public class User { //implements Validator {
 
     public void setEmailVerified(Boolean emailVerified) {
         this.emailVerified = emailVerified;
-    }
-    public AuthProvider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(AuthProvider provider) {
-        this.provider = provider;
     }
 
     public String getProviderId() {

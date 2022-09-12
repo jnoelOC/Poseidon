@@ -1,11 +1,11 @@
 package com.nnk.springboot.config;
-
-import com.nnk.springboot.security.oauth2.CustomOAuth2UserService;
 import com.nnk.springboot.services.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.validation.constraints.NotNull;
@@ -23,10 +24,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyUserDetailsService uds;
-
-    @Autowired
-    private CustomOAuth2UserService customOAuth2UserService;
-
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -62,8 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login**", "/templates/**", "/css/*.css", "/img/**").permitAll()
-                .antMatchers("/user/*").hasAuthority("ADMIN")
+                    .antMatchers("/login**", "/templates/**", "/css/*.css", "/img/**").permitAll()
+                    .antMatchers("/user/*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
@@ -77,10 +74,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .deleteCookies("JSESSIONID")
                 .and()
-                .oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService);
+                .oauth2Login().loginPage("/login").defaultSuccessUrl("/bidList/list", true).userInfoEndpoint()
+                ;
+
     }
 
 

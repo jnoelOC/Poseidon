@@ -8,7 +8,7 @@
 <!--    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}" /> -->
     <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 -->
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" >
 </head>
 <body class="text-center">
 <div class="container">
@@ -35,14 +35,15 @@
         <button class="w-50 btn btn-md btn-primary" type="submit">Log in</button>
 
 
+
     </form>
+
+    <div class="col-6 w-80 m-auto p-5">
+        <a class="text-dark w-50 btn btn-primary" th:href="@{/oauth2/authorization/github}">Log in with Github</a>
+    </div>
 </main>
 </div>
-<form name='f' th:action="@{/login/oauth2/code/github}" method='POST'>
-    <div class="col-6 w-80 m-auto p-5">
-        <button type="submit" class="text-dark w-50 btn btn-primary" id="btnOAuth2Github" name="btnOAuth2Github">Log in with Github</button>
-    </div>
-</form>
+
 <footer>
     <div style="text-align:center">
         <p class="mt-5 mb-3 text-muted">© 2022</p>
