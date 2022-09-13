@@ -37,11 +37,6 @@ public class LoginController {
         return mav;
     }
 
-/*    @RequestMapping("/login/oauth2/code/github")
-    public String getGithub() {
-        return "Welcome, github user !";
-    }*/
-
     @PostMapping("/login")
     @RolesAllowed({"USER", "ADMIN"})
     public ModelAndView loginPost(Model model) {
@@ -62,25 +57,6 @@ public class LoginController {
         return mav;
     }
 
-
-/*
-    @GetMapping("/app-logout")
-    @RolesAllowed({"USER", "ADMIN"})
-    public ModelAndView logout() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("login");
-        return mav;
-    }
-*/
-/*
-    @GetMapping("secure/article-details")
-    public ModelAndView getAllUserArticles() {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("users", userRepository.findAll());
-        mav.setViewName("user/list");
-        return mav;
-    }
-*/
     @GetMapping("/error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();

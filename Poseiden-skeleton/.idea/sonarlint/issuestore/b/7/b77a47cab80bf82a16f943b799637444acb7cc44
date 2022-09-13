@@ -1,15 +1,0 @@
-
-Q	java:S125"<This block of commented-out lines of code should be removed.(²§¥‰
-K
-java:S1874%"0Remove this use of "signWith"; it is deprecated.(¿Ğçæûÿÿÿÿ
-D
-java:S1874*".Remove this use of "parser"; it is deprecated.(¤‹ıà
-P
-java:S1874+"5Remove this use of "setSigningKey"; it is deprecated.(±®ß™üÿÿÿÿ
-D
-java:S18744".Remove this use of "parser"; it is deprecated.(øˆ½¤
-K
-java:S18744"5Remove this use of "setSigningKey"; it is deprecated.(øˆ½¤
-]	java:S1256"<This block of commented-out lines of code should be removed.(„¢ÎŒøÿÿÿÿ8øèË—±0
-Z
-java:S1128"=Remove this unused import 'java.security.SignatureException'.(¦ÃşŠ8ùèË—±0

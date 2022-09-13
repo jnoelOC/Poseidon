@@ -31,15 +31,10 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
-<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
         <button class="w-50 btn btn-md btn-primary" type="submit">Log in</button>
-
-
-
     </form>
 
     <div class="col-6 w-80 m-auto p-5">
-        <button type="submit" class="text-dark w-50 btn btn-primary" id="btnOAuth2Github" name="btnOAuth2Github">Log in with Github</button>
         <a class="text-dark w-50 btn btn-primary" th:href="@{/oauth2/authorization/github}">Log in with Github</a>
     </div>
 </main>
@@ -47,7 +42,7 @@
 
 <footer>
     <div style="text-align:center">
-        <p class="mt-5 mb-3 text-muted">© 2022</p>
+        <p class="mt-5 mb-3 text-muted">Trading Application © 2022</p>
         <a href="/logout"> <img src="/img/logo.png" alt="Poseidon" width="128" height="88"></a>
     </div>
 </footer>

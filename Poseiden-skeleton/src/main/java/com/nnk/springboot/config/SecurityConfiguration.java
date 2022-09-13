@@ -74,8 +74,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .deleteCookies("JSESSIONID")
                 .and()
-                .oauth2Login().loginPage("/login").defaultSuccessUrl("/bidList/list", true).userInfoEndpoint()
-                ;
+                .oauth2Login().loginPage("/login")
+                .defaultSuccessUrl("/bidList/list", true)
+                .userInfoEndpoint();
 
     }
 
