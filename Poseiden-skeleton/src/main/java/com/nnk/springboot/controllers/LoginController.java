@@ -1,68 +1,75 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.BidListRepository;
-import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.domain.validators.password.PasswordConstraintValidator;
 import com.nnk.springboot.services.impl.BidListService;
-import com.nnk.springboot.services.impl.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
-import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @RestController
 public class LoginController {
 
+    public static final Logger logger = LogManager.getLogger(LoginController.class);
+
     @Autowired
     private BidListService bidListService;
 
+
+    @Autowired
+    private PasswordConstraintValidator passwordConstraintValidator;
+
     @GetMapping("/login")
-   // @RolesAllowed({"USER", "ADMIN"})
-    public ModelAndView login() {
+    //@RolesAllowed({"USER", "ADMIN"})
+    public ModelAndView login(User user) {
         ModelAndView mav = new ModelAndView();
+
         mav.setViewName("login");
+        logger.info("Get Login");
         return mav;
     }
 
-    @PostMapping("/login")
-    @RolesAllowed({"USER", "ADMIN"})
-    public ModelAndView loginPost(Model model) {
+/*    @PostMapping("/login")
+    //@RolesAllowed({"USER", "ADMIN"})
+    public ModelAndView loginPost(@Valid User user, BindingResult bindingResult, Model model) {
         ModelAndView mav = new ModelAndView();
 
-            model.addAttribute("bids", bidListService.findAllBids());
-//            mav.setViewName("home");
-        mav.setViewName("bidList/list");
+        if (bindingResult.hasErrors()) {
+            mav.setViewName("templates/error");
+            logger.error("Post Login error");
+            return mav;
+        }
 
+ //       model.addAttribute("bids", bidListService.findAllBids());
+ //       mav.setViewName("bidList/list");
+
+        logger.info("Post Login");
         return mav;
-    }
+    }*/
 
     @GetMapping("/logout")
     @RolesAllowed({"USER", "ADMIN"})
     public ModelAndView logout() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
+        logger.info("Get Logout");
         return mav;
     }
 
-    @GetMapping("/error")
+    @GetMapping("/templates/error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();
         String errorMessage= "You are not authorized for the requested data.";
         mav.addObject("errorMsg", errorMessage);
-        mav.setViewName("403");
+        mav.setViewName("error/403");
+        logger.error("Get 403");
         return mav;
     }
 }

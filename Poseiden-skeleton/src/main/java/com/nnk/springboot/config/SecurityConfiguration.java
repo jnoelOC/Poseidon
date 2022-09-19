@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login").permitAll()
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/bidList/list", true)
-                .failureUrl("/login.html")
+                //.failureUrl("/login.html")
                 .and()
                 .logout().logoutUrl("/logout").permitAll()
                 .invalidateHttpSession(true).clearAuthentication(true)
@@ -92,9 +92,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Value("${spring.security.debug:false}")
     boolean securityDebug;
 
-    @Override
+/*    @Override
     public void configure(WebSecurity web) throws Exception {
         web.debug(securityDebug);
-    }
+    }*/
 
 }

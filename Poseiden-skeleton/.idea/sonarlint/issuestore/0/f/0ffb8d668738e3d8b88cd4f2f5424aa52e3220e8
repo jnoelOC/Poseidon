@@ -1,6 +1,8 @@
 
-]	java:S1075"AConstructor has 8 parameters, which is greater than 7 authorized.(‘‹√≠8ﬂ∞¢ò±0
-]	java:S125"<This block of commented-out lines of code should be removed.(”ﬂÍú¯ˇˇˇˇ8∏˛àñ±0
-P	java:S125"<This block of commented-out lines of code should be removed.(˙◊ÑF
-c
-java:S1128"ARemove this unused import 'javax.validation.constraints.NotNull'.(·Á•„¸ˇˇˇˇ8œ‘˘è≥0
+f	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ÷®»
+m	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Òú›Ã8¬§ ≤µ0
+n	java:S116"YRename this field "email_verified" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òäì≈
+j	java:S100Y"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç‡„≈8Õ§ ≤µ0
+j	java:S100]"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Òú›Ã8Œ§ ≤µ0
+\
+java:S1128"ARemove this unused import 'javax.validation.constraints.NotNull'.(·Á•„¸ˇˇˇˇ
