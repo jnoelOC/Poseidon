@@ -29,7 +29,7 @@ public class UserService implements IUserService {
         return userRepository.findByUsername(username);
     }
 
-    public User findById(Integer id){
+    public User findById(Long id){
 
         return userRepository.findById(id).get();
     }

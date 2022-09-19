@@ -1,0 +1,11 @@
+
+V
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(àüßØ
+]	java:S125)"<This block of commented-out lines of code should be removed.(£òŒéÿÿÿÿÿ8Œç™¯µ0
+[
+java:S1128	"9Remove this unused import 'org.springframework.ui.Model'.(ê†ıÿÿÿÿ8ç™¯µ0
+k
+java:S1128
+"IRemove this unused import 'org.springframework.validation.BindingResult'.(‹¶¸ùÿÿÿÿ8ç™¯µ0
+U
+java:S1128"3Remove this unused import 'javax.validation.Valid'.(æ¤ñ÷úÿÿÿÿ8ç™¯µ0

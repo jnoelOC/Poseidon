@@ -1,8 +1,6 @@
 package com.nnk.springboot.services.impl;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.IRatingService;
 import org.springframework.beans.factory.annotation.Autowired;

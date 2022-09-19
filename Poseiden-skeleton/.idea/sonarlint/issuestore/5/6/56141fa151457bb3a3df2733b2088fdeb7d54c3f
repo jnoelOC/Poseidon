@@ -1,22 +1,20 @@
 
-_
-java:S1192&"IDefine a constant instead of duplicating this literal "user/add" 3 times.(ßº­Ò
 b
-java:S1192@"LDefine a constant instead of duplicating this literal "user/update" 4 times.(«¿€
+java:S1192j"LDefine a constant instead of duplicating this literal "user/update" 4 times.(«¿€
 o
-java:S11925"TDefine a constant instead of duplicating this literal "redirect:/user/list" 3 times.(çùÖ©üÿÿÿÿ
+java:S1192X"TDefine a constant instead of duplicating this literal "redirect:/user/list" 3 times.(çùÖ©üÿÿÿÿ
 \
-java:S1192 "FDefine a constant instead of duplicating this literal "users" 4 times.(ÊåĞş
-b
-java:S4684%"@Replace this persistent entity with a simple POJO or DTO object.(Ï¶º¢øÿÿÿÿ8˜à´³0
-b
-java:S4684*"@Replace this persistent entity with a simple POJO or DTO object.(¢šßşüÿÿÿÿ8™à´³0
-P	java:S125="<This block of commented-out lines of code should be removed.(Œ¹0
-\
-java:S4684D"@Replace this persistent entity with a simple POJO or DTO object.(¢õ¤`8¤à´³0
-P	java:S125^"<This block of commented-out lines of code should be removed.(Œ¹0
->	java:S108b")Either remove or fill this block of code.(…‰”Ï
-u
-java:S1128"SRemove this unused import 'com.nnk.springboot.exception.ResourceNotFoundException'.(£©ìÇûÿÿÿÿ8Šõ¹³0
-w
-java:S1128"URemove this unused import 'org.springframework.security.access.prepost.PreAuthorize'.(ˆ†×ùÿÿÿÿ8Šõ¹³0
+java:S1192("FDefine a constant instead of duplicating this literal "users" 4 times.(ÊåĞş
+_
+java:S11920"IDefine a constant instead of duplicating this literal "user/add" 3 times.(ßº­Ò
+[
+java:S4684."@Replace this persistent entity with a simple POJO or DTO object.(Ï¶º¢øÿÿÿÿ
+[
+java:S46844"@Replace this persistent entity with a simple POJO or DTO object.(¢šßşüÿÿÿÿ
+œ
+java:S1186="€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤¬ôÉûÿÿÿÿ
+P	java:S125f"<This block of commented-out lines of code should be removed.(Œ¹0
+[
+java:S4684n"@Replace this persistent entity with a simple POJO or DTO object.(ÂÌ‰—ûÿÿÿÿ
+Q	java:S125‹"<This block of commented-out lines of code should be removed.(Œ¹0
+?	java:S108")Either remove or fill this block of code.(…‰”Ï

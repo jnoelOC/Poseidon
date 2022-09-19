@@ -8,5 +8,6 @@ public interface IUserService {
     User findByUsername(String username);
     List<User> findAll();
 
+    User findById(Long id);
 
 }

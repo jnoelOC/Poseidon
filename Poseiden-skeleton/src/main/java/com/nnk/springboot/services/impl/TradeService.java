@@ -1,8 +1,6 @@
 package com.nnk.springboot.services.impl;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.repositories.TradeRepository;
 import com.nnk.springboot.services.ITradeService;
 import org.springframework.beans.factory.annotation.Autowired;
