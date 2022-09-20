@@ -35,11 +35,13 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
         PasswordValidator validator = new PasswordValidator(resolver, Arrays.asList(
                 // Password length should be in between 8 to 24 characters
-                new LengthRule(4, 224),
+                new LengthRule(8, 24),
                 // with at least one uppercase
-                // new CharacterRule(EnglishCharacterData.UpperCase, 1),
+                new CharacterRule(EnglishCharacterData.UpperCase, 1),
+                // with at least one digit
+                new CharacterRule(EnglishCharacterData.Digit, 1),
                 // with at least one symbol
-                // new CharacterRule(EnglishCharacterData.Special, 1),
+                new CharacterRule(EnglishCharacterData.Special, 1),
                 // No whitespace allowed
                 new WhitespaceRule()
         ));
@@ -51,7 +53,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
         List<String> messages = validator.getMessages(result);
         String messageTemplate = String.join(",", messages);
-       context.buildConstraintViolationWithTemplate(messageTemplate).addConstraintViolation().disableDefaultConstraintViolation();
+    context.buildConstraintViolationWithTemplate(messageTemplate).addConstraintViolation().disableDefaultConstraintViolation();
         return false;
     }
 

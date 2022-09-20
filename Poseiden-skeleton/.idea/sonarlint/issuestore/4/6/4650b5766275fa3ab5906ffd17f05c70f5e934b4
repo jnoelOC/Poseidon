@@ -1,0 +1,27 @@
+
+]
+java:S1192<"GDefine a constant instead of duplicating this literal "rating" 3 times.(¢ß»Æ
+l
+java:S11920"VDefine a constant instead of duplicating this literal "redirect:/rating/list" 3 times.(‘¯þó
+d
+java:S1192="NDefine a constant instead of duplicating this literal "rating/update" 3 times.(ñ¨™Â
+I
+java:S3416"3Update this logger to use "RatingController.class".(Þ»šî
+M
+java:S1135"2Complete the task associated to this TODO comment.(úÁ»ÿÿÿÿÿ
+[
+java:S4684*"@Replace this persistent entity with a simple POJO or DTO object.(ª¿ô¸þÿÿÿÿ
+G
+java:S1135+"2Complete the task associated to this TODO comment.(«¿ƒ
+G
+java:S11358"2Complete the task associated to this TODO comment.(´¨5
+V	java:S1259"<This block of commented-out lines of code should be removed.(’„÷¢øÿÿÿÿ
+[
+java:S4684A"@Replace this persistent entity with a simple POJO or DTO object.(ýÈÊÜýÿÿÿÿ
+M
+java:S1135C"2Complete the task associated to this TODO comment.(°ûî†üÿÿÿÿ
+M
+java:S1135W"2Complete the task associated to this TODO comment.(ëû˜Åüÿÿÿÿ
+P	java:S125Y"<This block of commented-out lines of code should be removed.(Œž¹0
+`
+java:S1128">Remove this unused import 'com.nnk.springboot.domain.BidList'.(ÞÉµ‘ùÿÿÿÿ8üû«×µ0

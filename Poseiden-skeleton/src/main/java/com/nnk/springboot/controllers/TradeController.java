@@ -3,6 +3,8 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.services.impl.TradeService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,7 @@ import java.util.List;
 
 @Controller
 public class TradeController {
-    // TODO: Inject Trade service
+    public static final Logger logger = LogManager.getLogger(UserController.class);
 
     @Autowired
     private TradeService tradeService;
@@ -27,6 +29,7 @@ public class TradeController {
     {
         // TODO: find all Trade, add to model
         List<Trade> trades = tradeService.findAllTrades();
+        logger.info("List all trades");
         model.addAttribute("trades", trades);
         return "trade/list";
     }
@@ -41,10 +44,12 @@ public class TradeController {
         // TODO: check data valid and save to db, after saving return Trade list
         if (!result.hasErrors()) {
             tradeService.saveTrade(trade);
+            logger.info("Post validate trade");
             model.addAttribute("trades", tradeService.findAllTrades());
             return "redirect:/trade/list";
         }
 
+        logger.error("Post validate trade in error");
         return "trade/add";
     }
 
@@ -53,6 +58,7 @@ public class TradeController {
         // TODO: get Trade by Id and to model then show to the form
 
         Trade trade = tradeService.findById(id);  //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        logger.info("Get update trade by id");
         model.addAttribute("trade", trade);
 
         return "trade/update";
@@ -65,16 +71,19 @@ public class TradeController {
 
 
         if (result.hasErrors()) {
+            logger.error("Post update trade in error");
             return "trade/update";
         }
         trade.setTradeId(id);
 
         Trade trade1 = tradeService.saveTrade(trade);
         if(trade1 == null) {
+            logger.error("trade variable is null");
             return "trade/update";
         }
         model.addAttribute("trade", tradeService.findAllTrades());
 
+        logger.info("Post update trade and display all trades in list");
         return "redirect:/trade/list";
     }
 
@@ -84,6 +93,7 @@ public class TradeController {
 
         Trade trade = tradeService.findById(id);
         tradeService.deleteTrade(trade);
+        logger.info("delete trade by id");
         model.addAttribute("trade", tradeService.findAllTrades());
 
         return "redirect:/trade/list";

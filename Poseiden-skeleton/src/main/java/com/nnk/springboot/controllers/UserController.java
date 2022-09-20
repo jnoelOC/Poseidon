@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.ClockProvider;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.Valid;
+import java.sql.SQLException;
 
 @Controller
 public class UserController {
@@ -77,12 +79,19 @@ public class UserController {
                 }
             };
 
-            if(passwordConstraintValidator.isValid(user.getPassword(), context)) {
+            String pswd = user.getPassword();
+            if(passwordConstraintValidator.isValid(pswd, context)) {
 
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-                user.setPassword(encoder.encode(user.getPassword()));
-                user.setEmail_verified("tytu");
-                userService.saveUser(user);
+                user.setPassword(encoder.encode(pswd));
+
+                try {
+                    userService.saveUser(user);
+                }
+                catch(Exception ex){
+                    logger.error("Can't add new user : " + ex.getMessage());
+                    return "redirect:/user/add";
+                }
                 model.addAttribute("users", userService.findAll());
                 logger.info("Adding new user successfully !");
                 return "redirect:/user/list";
@@ -125,8 +134,10 @@ public class UserController {
         user.setId(id);
 
         User u1 = userService.saveUser(user);
-        if(u1 == null)
+        if(u1 == null) {
+            logger.error("user variable is null");
             return "user/update";
+        }
         model.addAttribute("users", userService.findAll());
         logger.info("Update users (Post) in UserController");
         return "redirect:/user/list";

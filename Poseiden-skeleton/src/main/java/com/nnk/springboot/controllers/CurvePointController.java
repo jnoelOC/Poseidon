@@ -68,7 +68,7 @@ public class CurvePointController {
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get CurvePoint by Id and to model then show to the form
         CurvePoint curvePoint = curvePointService.findById(id);  //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-
+        logger.info("Get CurvePoint Update");
         model.addAttribute("curvePoint", curvePoint);
         return "curvePoint/update";
     }
@@ -79,6 +79,7 @@ public class CurvePointController {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
         try{
             if(curvePoint.getCurveId() <= 0 || curvePoint == null) {
+                logger.error("CurvePoint <= 0 OR null");
                 model.addAttribute("errorMsg", "must not be null");
                 return "curvePoint/update";
             }
@@ -96,6 +97,7 @@ public class CurvePointController {
 
         CurvePoint curvePoint1 = curvePointService.saveCurvePoint(curvePoint);
         if(curvePoint1 == null) {
+            logger.error("curvePoint variable is null");
             return "curvePoint/update";
         }
 

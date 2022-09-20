@@ -27,7 +27,7 @@ public class User {
     @Column(name="ROLE", nullable=false, length=125)
     private String role;
 
-    private String email_verified;
+  //  private boolean email_verified;
 
     public User() {
     }
@@ -37,13 +37,13 @@ public class User {
         this.password = password;
         this.role = role;
     }
-    public User(Long id, String username, String password, String fullname, String role, String email_verified) {
+    public User(Long id, String username, String password, String fullname, String role){ //, boolean email_verified) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.role = role;
-        this.email_verified = email_verified;
+     //   this.email_verified = email_verified;
     }
 
     public Long getId() {
@@ -85,12 +85,14 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
-    public String getEmail_verified() {
+/*
+    public boolean getEmail_verified() {
         return email_verified;
     }
 
-    public void setEmail_verified(String email_verified) {
+    public void setEmail_verified(boolean email_verified) {
         this.email_verified = email_verified;
     }
+    */
+
 }
