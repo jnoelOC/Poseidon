@@ -1,17 +1,10 @@
 package com.nnk.springboot.domain.validators.password;
 
-import lombok.SneakyThrows;
 import org.passay.*;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
 
 @Component
 public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
@@ -20,20 +13,10 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     public void initialize(final ValidPassword arg0){
     }
 
-    @SneakyThrows
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context){
-        // customizing validation msg
-        Properties props = new Properties();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("passay.properties");
-        try {
-            props.load(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        MessageResolver resolver = new PropertiesMessageResolver(props);
 
-        PasswordValidator validator = new PasswordValidator(resolver, Arrays.asList(
+        PasswordValidator validator = new PasswordValidator(Arrays.asList(
                 // Password length should be in between 8 to 125 characters
                 new LengthRule(8,125),
                 // with at least one uppercase
@@ -51,9 +34,8 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             return true;
         }
 
-        List<String> messages = validator.getMessages(result);
-        String messageTemplate = String.join(",", messages);
-    context.buildConstraintViolationWithTemplate(messageTemplate).addConstraintViolation().disableDefaultConstraintViolation();
+        context.buildConstraintViolationWithTemplate("Le mot de passe devrait contenir au moins 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial")
+                .addConstraintViolation().disableDefaultConstraintViolation();
         return false;
     }
 

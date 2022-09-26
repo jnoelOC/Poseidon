@@ -1,10 +1,9 @@
 package com.nnk.springboot.domain;
 
 import com.nnk.springboot.domain.validators.password.ValidPassword;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -13,21 +12,21 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID", unique=true, nullable=false)
     private Long id;
-    @NotBlank(message = "Username is mandatory")
+    @NotBlank(message = "Username est obligatoire")
+    @Size(min=3, max=125)
     @Column(name="USERNAME", nullable=false, length=125)
     private String username;
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank(message = "Password est obligatoire")
     @ValidPassword
     @Column(name="PASSWORD", nullable=false, length=125)
     private String password;
-    @NotBlank(message = "FullName is mandatory")
+    @NotBlank(message = "FullName est obligatoire")
+    @Size(min=3, max=125)
     @Column(name="FULLNAME", nullable=false, length=125)
     private String fullname;
-    @NotBlank(message = "Role is mandatory")
+    @NotBlank(message = "Role est obligatoire")
     @Column(name="ROLE", nullable=false, length=125)
     private String role;
-
-  //  private boolean email_verified;
 
     public User() {
     }
@@ -37,13 +36,12 @@ public class User {
         this.password = password;
         this.role = role;
     }
-    public User(Long id, String username, String password, String fullname, String role){ //, boolean email_verified) {
+    public User(Long id, String username, String password, String fullname, String role){
         this.id = id;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.role = role;
-     //   this.email_verified = email_verified;
     }
 
     public Long getId() {
@@ -85,14 +83,5 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-/*
-    public boolean getEmail_verified() {
-        return email_verified;
-    }
-
-    public void setEmail_verified(boolean email_verified) {
-        this.email_verified = email_verified;
-    }
-    */
 
 }
