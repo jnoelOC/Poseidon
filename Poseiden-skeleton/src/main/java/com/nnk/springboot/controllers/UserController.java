@@ -30,9 +30,6 @@ public class UserController {
     private PasswordConstraintValidator passwordConstraintValidator;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
 
@@ -51,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/user/validate")
-    public String validate(@Valid User user, BindingResult result, Model model) {
+    public String validate(@Valid User user, BindingResult result, Model model) throws SQLException{
 
         if(user.getUsername().isBlank() || user.getFullname().isBlank() || user.getPassword().isBlank() || user.getRole().isBlank()){
             model.addAttribute("errorMsg", "Each field is mandatory");
@@ -84,21 +81,23 @@ public class UserController {
 
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                 user.setPassword(encoder.encode(pswd));
-
                 try {
                     userService.saveUser(user);
                 }
                 catch(Exception ex){
                     logger.error("Can't add new user : " + ex.getMessage());
-                    return "redirect:/user/add";
+                    model.addAttribute("errorMsg", "Cannot save user");
+                    return "user/add";
                 }
+
                 model.addAttribute("users", userService.findAll());
                 logger.info("Adding new user successfully !");
                 return "redirect:/user/list";
             }
             else {
                 logger.error("Failure of adding new user");
-                return "redirect:/user/add";
+                model.addAttribute("errorMsg", "password invalid");
+                return "user/add";
             }
         }
         logger.info("Add users (Post) in UserController");
@@ -136,6 +135,7 @@ public class UserController {
         User u1 = userService.saveUser(user);
         if(u1 == null) {
             logger.error("user variable is null");
+            model.addAttribute("errorMsg", "cannot save user");
             return "user/update";
         }
         model.addAttribute("users", userService.findAll());

@@ -37,7 +37,7 @@ public class UserService implements IUserService {
         return userRepository.findById(id).get();
     }
     @Transactional//(rollbackFor = { SQLException.class })//(propagation = REQUIRES_NEW)
-    public User saveUser(User user){ //} throws SQLException {
+    public User saveUser(User user) {//throws SQLException {
         User u1 = null;
         try {
                 u1 = userRepository.save(user);

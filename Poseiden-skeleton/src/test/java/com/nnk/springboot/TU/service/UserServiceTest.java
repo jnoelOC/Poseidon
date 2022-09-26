@@ -44,7 +44,7 @@ public class UserServiceTest {
         // Arrange
         Boolean ret = true;
         String username = "user";
-        User user = new User(username, "$2a$10$Nk9P.umxh0.93yIQyQEcUur/njuoiSmQGm0DmPf4xtJ6YqV5NaQaO", "USER");
+        User user = new User(username, "$2a$10$yDzT7pZLVT9oN/V2lF7qL.9bkXMMzLBPZZKcTc/vov89DTj4S/3Ma", "USER");
 
         when(userRepository.findByUsername(username)).thenReturn(user);
         // Act
