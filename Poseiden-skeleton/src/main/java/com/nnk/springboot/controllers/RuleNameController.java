@@ -42,6 +42,11 @@ private RuleNameService ruleNameService;
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return RuleName list
 
+        if(ruleName.getName().isBlank()){
+            model.addAttribute("errorMsgName", "name est obligatoire");
+            return "ruleName/add";
+        }
+
         if (!result.hasErrors()) {
             ruleNameService.saveRuleName(ruleName);
             logger.info("validate and save rulename and display list all rulenames");
@@ -66,6 +71,11 @@ private RuleNameService ruleNameService;
     public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update RuleName and return RuleName list
+
+        if(ruleName.getName().isBlank()){
+            model.addAttribute("errorMsgName", "name est obligatoire");
+            return "ruleName/add";
+        }
 
         if (result.hasErrors()) {
             logger.error("Post update rulename in error");

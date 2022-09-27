@@ -48,11 +48,23 @@ public class BidListController {
         // TODO: check data valid and save to db, after saving return bid list
 
         if(bid.getAccount().isBlank()){
-            model.addAttribute("errorMsgAccount", "Account is mandatory");
+            model.addAttribute("errorMsgAccount", "Account est obligatoire");
             return "bidList/add";
         }
+
         if(bid.getType().isBlank()){
-            model.addAttribute("errorMsgType", "Type is mandatory");
+            model.addAttribute("errorMsgType", "Type est obligatoire");
+            return "bidList/add";
+        }
+
+        try {
+            if (bid.getBidQuantity().isNaN()) {
+                model.addAttribute("errorMsgBidQty", "BidQuantity est obligatoire et doit être un nombre");
+                return "bidList/add";
+            }
+        }catch(Exception ex){
+            logger.error(ex.getMessage());
+            model.addAttribute("errorMsgBidQty", "BidQuantity est obligatoire et doit être un nombre");
             return "bidList/add";
         }
 
@@ -83,11 +95,22 @@ public class BidListController {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
 
         if(bidList.getAccount().isBlank()){
-            model.addAttribute("errorMsgAccount", "Account is mandatory");
+            model.addAttribute("errorMsgAccount", "Account est obligatoire");
             return "bidList/update";
         }
         if(bidList.getType().isBlank()){
-            model.addAttribute("errorMsgType", "Type is mandatory");
+            model.addAttribute("errorMsgType", "Type est obligatoire");
+            return "bidList/update";
+        }
+
+        try {
+            if (bidList.getBidQuantity().isNaN()) {
+                model.addAttribute("errorMsgBidQty", "BidQuantity est obligatoire et doit être un nombre");
+                return "bidList/update";
+            }
+        }catch(Exception ex){
+            logger.error(ex.getMessage());
+            model.addAttribute("errorMsgBidQty", "BidQuantity est obligatoire et doit être un nombre");
             return "bidList/update";
         }
 
@@ -110,7 +133,6 @@ public class BidListController {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
         try {
             BidList bidList = bidListService.findById(id);
-            //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
             bidListService.deleteBidList(bidList);
             logger.info("Requête de Delete de BidList");
             model.addAttribute("bidList", bidListService.findAllBids());

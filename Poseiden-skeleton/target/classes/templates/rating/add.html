@@ -21,6 +21,7 @@
 			<div class="mb-3">
 				<label for="moodysRating" class="form-label">MoodysRating</label>
 				<input type="text" class="form-control" id="moodysRating" name="moodysRating" placeholder="MoodysRating">
+				<h4 style=color:red th:text="${errorMsgMoodys}"></h4>
 			</div>
 			<div class="mb-3">
 				<label for="sandPRating" class="form-label">SandPRating</label>
@@ -33,6 +34,7 @@
 			<div class="mb-3">
 				<label for="orderNumber" class="form-label">Order Number</label>
 				<input type="number" class="form-control" id="orderNumber" name="orderNumber" placeholder="Order Number">
+				<h4 style=color:red th:text="${errorMsgOrderNumber}"></h4>
 			</div>
 
 			<div class="form-group">

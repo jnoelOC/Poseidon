@@ -47,12 +47,12 @@ public class CurvePointController {
         // TODO: check data valid and save to db, after saving return Curve list
         try {
             if (curvePoint.getCurveId() <= 0 || curvePoint == null) {
-                model.addAttribute("errorMsg", "must not be null");
+                model.addAttribute("errorMsg", "doit ne pas être nul");
                 return "curvePoint/add";
             }
         }catch(Exception ex){
             logger.error(ex.getMessage());
-            model.addAttribute("errorMsg", "must not be null");
+            model.addAttribute("errorMsg", "doit ne pas être nul");
             return "curvePoint/add";
         }
         if (!result.hasErrors()) {
@@ -80,12 +80,12 @@ public class CurvePointController {
         try{
             if(curvePoint.getCurveId() <= 0 || curvePoint == null) {
                 logger.error("CurvePoint <= 0 OR null");
-                model.addAttribute("errorMsg", "must not be null");
+                model.addAttribute("errorMsg", "doit ne pas être nul");
                 return "curvePoint/update";
             }
         }catch(NullPointerException ex){
             logger.error(ex.getMessage());
-            model.addAttribute("errorMsg", "must not be null");
+            model.addAttribute("errorMsg", "doit ne pas être nul");
             return "curvePoint/update";
         }
 

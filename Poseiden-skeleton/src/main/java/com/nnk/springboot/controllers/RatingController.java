@@ -41,6 +41,22 @@ private RatingService ratingService;
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Rating list
+        if(rating.getMoodysRating().isBlank()){
+            model.addAttribute("errorMsgMoodys", "moodysrating est obligatoire");
+            return "rating/add";
+        }
+
+        try{
+            if(rating.getOrderNumber() < 0 || rating.getOrderNumber() > 999999){
+                model.addAttribute("errorMsgOrderNumber", "orderNumber est compris entre 0 et 999999");
+                return "rating/add";
+            }
+        }catch(Exception ex){
+            logger.error(ex.getMessage());
+            model.addAttribute("errorMsgOrderNumber", "orderNumber est compris entre 0 et 999999");
+            return "rating/add";
+        }
+
         if (!result.hasErrors()) {
             ratingService.saveRating(rating);
             logger.info("validate rating");
@@ -65,6 +81,11 @@ private RatingService ratingService;
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Rating and return Rating list
+
+        if(rating.getOrderNumber() < 0 || rating.getOrderNumber() > 999999){
+            model.addAttribute("errorMsgOrderNumber", "orderNumber est compris entre 0 et 999999");
+            return "rating/update";
+        }
 
         if (result.hasErrors()) {
             logger.error("Post update ratings in error");

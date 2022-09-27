@@ -60,7 +60,7 @@ public class UserController {
         }
 
             logger.error("Can't add new user : " + result.getFieldError());
-            model.addAttribute("errorMsg", "Ne peut pas sauvegarder un nouvel utilisateur");
+            model.addAttribute("errorMsg", "Ne peut pas ajouter un nouvel utilisateur");
 
             return "user/add";
     }
@@ -95,7 +95,7 @@ public class UserController {
         User u1 = userService.saveUser(user);
         if(u1 == null) {
             logger.error("user variable is null");
-            model.addAttribute("errorMsg", "Ne peut pas sauvegarder un nouvel utilisateur");
+            model.addAttribute("errorMsg", "Ne peut pas ajouter un nouvel utilisateur");
             return "user/update";
         }
         model.addAttribute("users", userService.findAll());

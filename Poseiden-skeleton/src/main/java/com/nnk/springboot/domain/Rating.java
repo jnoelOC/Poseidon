@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
@@ -12,7 +13,8 @@ public class Rating {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID", unique=true, nullable=false)
     private Integer id;
-    @Column(name="MOODYSRATING", length=125)
+    @Column(name="MOODYSRATING", nullable=false, length=125)
+    @NotBlank(message = "moodysRating est obligatoire")
     private String moodysRating;
     @Column(name="SANDPRATING", length=125)
     private String sandPRating;

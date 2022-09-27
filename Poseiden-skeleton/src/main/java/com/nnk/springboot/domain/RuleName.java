@@ -9,7 +9,7 @@ public class RuleName {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID", unique=true, nullable=false)
     private Integer id;
-    @Column(name="NAME", length=125)
+    @Column(name="NAME", nullable=false, length=125)
     private String name;
     @Column(name="DESCRIPTION", length=125)
     private String description;

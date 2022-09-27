@@ -42,6 +42,27 @@ public class TradeController {
     @PostMapping("/trade/validate")
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Trade list
+
+
+        if(trade.getAccount().isBlank()){
+            model.addAttribute("errorMsgAccount", "Account est obligatoire");
+            return "trade/add";
+        }
+        if(trade.getType().isBlank()){
+            model.addAttribute("errorMsgType", "Type est obligatoire");
+            return "trade/add";
+        }
+        try {
+            if (trade.getBuyQuantity().isNaN()) {
+                model.addAttribute("errorMsgBuyQty", "BuyQuantity est obligatoire");
+                return "trade/add";
+            }
+        }catch(Exception ex){
+            logger.error(ex.getMessage());
+            model.addAttribute("errorMsgBuyQty", "BuyQuantity est obligatoire");
+            return "trade/add";
+        }
+
         if (!result.hasErrors()) {
             tradeService.saveTrade(trade);
             logger.info("Post validate trade");
@@ -69,6 +90,14 @@ public class TradeController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Trade and return Trade list
 
+        if(trade.getAccount().isBlank()){
+            model.addAttribute("errorMsgAccount", "Account est obligatoire");
+            return "trade/add";
+        }
+        if(trade.getType().isBlank()){
+            model.addAttribute("errorMsgType", "Type est obligatoire");
+            return "trade/add";
+        }
 
         if (result.hasErrors()) {
             logger.error("Post update trade in error");
