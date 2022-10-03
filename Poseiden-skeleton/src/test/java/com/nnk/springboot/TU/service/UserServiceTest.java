@@ -40,7 +40,7 @@ public class UserServiceTest {
         Boolean ret = true;
         String username = "inconnu";
         // Act
-        com.nnk.springboot.domain.User u1 = userService.findByUsername(username);
+        User u1 = userService.findByUsername(username);
         if (u1 == null) {
             ret = false;
         }

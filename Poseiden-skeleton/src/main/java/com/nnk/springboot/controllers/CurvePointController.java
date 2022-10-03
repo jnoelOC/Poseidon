@@ -109,16 +109,12 @@ public class CurvePointController {
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteCP(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
-        try {
+
             CurvePoint curvePoint = curvePointService.findById(id);
             //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
             curvePointService.deleteCurvePoint(curvePoint);
             logger.info("Requête de Delete de CurvePoint");
             model.addAttribute("curvePoints", curvePointService.findAllCurvePoints());
-        }
-        catch(Exception ex){
-
-        }
         return "redirect:/curvePoint/list";
     }
 }

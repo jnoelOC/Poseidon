@@ -35,7 +35,7 @@ public class TradeController {
     }
 
     @GetMapping("/trade/add")
-    public String addUser(Trade bid) {
+    public String addTrade(Trade bid) {
         return "trade/add";
     }
 
@@ -108,7 +108,7 @@ public class TradeController {
         Trade trade1 = tradeService.saveTrade(trade);
         if(trade1 == null) {
             logger.error("trade variable is null");
-            return "trade/update";
+            return "trade/add";
         }
         model.addAttribute("trade", tradeService.findAllTrades());
 

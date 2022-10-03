@@ -1,10 +1,10 @@
 package com.nnk.springboot.TU.controller;
 
 import com.nnk.springboot.controllers.BidListController;
+import com.nnk.springboot.controllers.TradeController;
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.services.impl.BidListService;
-import com.nnk.springboot.services.impl.MyUserDetailsService;
-import com.nnk.springboot.services.impl.UserService;
+import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.services.impl.TradeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,12 +12,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.PropertyEditorRegistry;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.validation.*;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
-import javax.validation.Valid;
 import java.beans.PropertyEditor;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,201 +28,187 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class BidListControllerTest {
+public class TradeControllerTest {
 
     @InjectMocks
-    private BidListController bidListController;
+    private TradeController tradeController;
 
     @Mock
-    private BidListService bidListService;
-/*
-    @Mock
-    private MyUserDetailsService myUserDetailsService;
-
-    @Mock
-    private PasswordEncoder passwordEncoder;
-
-    @Mock
-    private UserService userService;
-*/
+    private TradeService tradeService;
 
     @Test
-    @DisplayName("Get bidList")
-    void whenGetBidList_thenReturnsBidList() throws Exception {
+    @DisplayName("Get trade")
+    void whenGetTradeList_thenReturnsTradeList() throws Exception {
         // ARRANGE
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.findAllBids()).thenReturn(bids);
+        Trade tr1 = new Trade("acc1", "typ1");
+        Trade tr2 = new Trade("acc2", "typ2");
+        List<Trade> trades = new ArrayList<>();
+        trades.add(tr1);
+        trades.add(tr2);
+        when(tradeService.findAllTrades()).thenReturn(trades);
         // ACT
-        String ret = bidListController.home(model);
+        String ret = tradeController.home(model);
         // ASSERT
-        assertThat(ret).hasToString("bidList/list");
+        assertThat(ret).hasToString("trade/list");
     }
 
     @Test
-    @DisplayName("Get /bidList/add")
-    void whenGetAddBidList_thenReturnsBidList() throws Exception {
+    @DisplayName("Get /trade/add")
+    void whenGetAddTrade_thenReturnsTradeList() throws Exception {
         // ARRANGE
-        BidList bid = new BidList("account1", "type1", 111.0);
+        Trade tr1 = new Trade("acc1", "typ1");
         // ACT
-        String ret = bidListController.addBidForm(bid);
+        String ret = tradeController.addTrade(tr1);
         // ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("trade/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate")
-    void whenPostValidateBidList_thenReturnsBidList() throws Exception {
+    @DisplayName("Post /trade/validate")
+    void whenPostValidateTrade_thenReturnsTradeList() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("account0", "type0",  333.0);
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.saveBidList(bid0)).thenReturn(bid0);
-        when(bidListService.findAllBids()).thenReturn(bids);
+        Trade tr1 = new Trade("acc1", "typ1");
+        tr1.setBuyQuantity(12.0);
+        Trade tr2 = new Trade("acc2", "typ2");
+        Trade tr3 = new Trade("acc3", "typ3");
+        List<Trade> trades = new ArrayList<>();
+        trades.add(tr1);        trades.add(tr2);    trades.add(tr3);
+        when(tradeService.saveTrade(tr1)).thenReturn(tr2);
+        when(tradeService.findAllTrades()).thenReturn(trades);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = tradeController.validate(tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("redirect:/bidList/list");
+        assertThat(ret).hasToString("redirect:/trade/list");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate with Account blank")
-    void whenPostValidateBidListWithAccountBlank_thenReturnsBidListAdd() throws Exception {
+    @DisplayName("Post /trade/validate with Account blank")
+    void whenPostValidateTradeWithAccountBlank_thenReturnsTradeAdd() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("", "type0",  333.0);
+        Trade tr1 = new Trade("", "typ1");
+        tr1.setBuyQuantity(12.0);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = tradeController.validate(tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("trade/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate with Type blank")
-    void whenPostValidateBidListWithTypeBlank_thenReturnsBidListAdd() throws Exception {
+    @DisplayName("Post /trade/validate with Type blank")
+    void whenPostValidateTradeWithTypeBlank_thenReturnsTradeAdd() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("Account0", "",  333.0);
+        Trade tr1 = new Trade("Account1", "");
+        tr1.setBuyQuantity(12.0);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = tradeController.validate(tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("trade/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate with bidQty null")
-    void whenPostValidateBidListWithBidQtyNull_thenReturnsBidListAdd() throws Exception {
+    @DisplayName("Post /trade/validate with BuyQty at null")
+    void whenPostValidateTradeWithBuyQtyAtNull_thenReturnsTradeAdd() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("Account0", "Type0",  null);
+        Trade tr1 = new Trade("Account1", "Type1");
+        tr1.setBuyQuantity(null);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = tradeController.validate(tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("trade/add");
     }
 
-     @Test
-     @DisplayName("Get /bidList/Update with id")
-     void whenGetUpdate_thenReturnBidListUpdate(){
-         // ARRANGE
-         Integer id = 1;
-         BidList bid0 = new BidList("account0", "type0",  333.0);
-         when(bidListService.findById(id)).thenReturn(bid0);
-         // ACT
-         String ret = bidListController.showUpdateForm(id, model);
-         //ASSERT
-         assertThat(ret).hasToString("bidList/update");
-     }
-
     @Test
-    @DisplayName("Post /bidList/Update with id")
-    void whenPostUpdate_thenReturnBidListUpdate(){
+    @DisplayName("Get /trade/Update with id")
+    void whenGetUpdate_thenReturnTradeUpdate(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  333.0);
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.saveBidList(bid0)).thenReturn(bid1);
-        //when(bidListService.findAllBids()).thenReturn(bids);
+        Trade tr1 = new Trade("Account1", "Type1");
+        tr1.setBuyQuantity(123.0);
+        when(tradeService.findById(id)).thenReturn(tr1);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = tradeController.showUpdateForm(id, model);
         //ASSERT
-        assertThat(ret).hasToString("redirect:/bidList/list");
+        assertThat(ret).hasToString("trade/update");
     }
 
     @Test
-    @DisplayName("Post /bidList/Update with Save returns null")
-    void whenPostUpdate_thenReturnBidListAtNull(){
+    @DisplayName("Post /trade/Update with id")
+    void whenPostUpdate_thenReturnTradeUpdate(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  333.0);
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.saveBidList(bid0)).thenReturn(null);
+        Trade tr1 = new Trade("Account1", "Type1");
+        tr1.setBuyQuantity(123.0);
+        Trade tr2 = new Trade("Account2", "Type2");
+        List<Trade> trades = new ArrayList<>();
+        trades.add(tr1);
+        trades.add(tr2);
+        when(tradeService.saveTrade(tr1)).thenReturn(tr2);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = tradeController.updateTrade(id, tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("redirect:/trade/list");
+    }
+
+    @Test
+    @DisplayName("Post /trade/Update with Save returns null")
+    void whenPostUpdate_thenReturnTradeAtNull(){
+        // ARRANGE
+        Integer id = 1;
+        Trade tr1 = new Trade("Account1", "Type1");
+        tr1.setBuyQuantity(123.0);
+        Trade tr2 = new Trade("Account2", "Type2");
+        List<Trade> trades = new ArrayList<>();
+        trades.add(tr1);
+        trades.add(tr2);
+        when(tradeService.saveTrade(tr1)).thenReturn(null);
+        // ACT
+        String ret = tradeController.updateTrade(id, tr1, result, model);
+        //ASSERT
+        assertThat(ret).hasToString("trade/add");
     }
 
     @Test
     @DisplayName("Post /bidList/Update with Account blank")
-    void whenPostUpdate_thenReturnBidListAccountAtNull(){
+    void whenPostUpdate_thenReturnBidListAccountBlank(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("", "type0",  333.0);
+        Trade tr1 = new Trade("", "Type1");
+        tr1.setBuyQuantity(123.0);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = tradeController.updateTrade(id, tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("trade/add");
     }
 
     @Test
     @DisplayName("Post /bidList/Update with Type blank")
-    void whenPostUpdate_thenReturnBidListTypeAtNull(){
+    void whenPostUpdate_thenReturnBidListTypeBlank(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("Account0", "",  333.0);
+        Trade tr1 = new Trade("Account1", "");
+        tr1.setBuyQuantity(123.0);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = tradeController.updateTrade(id, tr1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("trade/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/Update with bidQty at null")
-    void whenPostUpdate_thenReturnBidListBidQtyAtNull(){
+    @DisplayName("Get /trade/delete")
+    void whenGetDelete_thenReturnTrade(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  null);
+        Trade tr1 = new Trade("Account1", "type1");
+        tr1.setBuyQuantity(123.0);
+        when(tradeService.findById(id)).thenReturn(tr1);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = tradeController.deleteTrade(id, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("redirect:/trade/list");
     }
 
 
-    @Test
-    @DisplayName("Get /bidList/delete")
-    void whenGetDelete_thenReturnBidList(){
-        // ARRANGE
-        Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  null);
-        when(bidListService.findById(id)).thenReturn(bid0);
-        // ACT
-        String ret = bidListController.deleteBid(id, model);
-        //ASSERT
-        assertThat(ret).hasToString("redirect:/bidList/list");
-    }
+
 
 
 

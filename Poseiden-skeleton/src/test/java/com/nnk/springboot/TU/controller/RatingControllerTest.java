@@ -1,10 +1,10 @@
 package com.nnk.springboot.TU.controller;
 
 import com.nnk.springboot.controllers.BidListController;
+import com.nnk.springboot.controllers.RatingController;
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.services.impl.BidListService;
-import com.nnk.springboot.services.impl.MyUserDetailsService;
-import com.nnk.springboot.services.impl.UserService;
+import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.services.impl.RatingService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,12 +12,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.PropertyEditorRegistry;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.validation.*;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
-import javax.validation.Valid;
 import java.beans.PropertyEditor;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,204 +28,168 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class BidListControllerTest {
+public class RatingControllerTest {
 
     @InjectMocks
-    private BidListController bidListController;
+    private RatingController ratingController;
 
     @Mock
-    private BidListService bidListService;
-/*
-    @Mock
-    private MyUserDetailsService myUserDetailsService;
+    private RatingService ratingService;
 
-    @Mock
-    private PasswordEncoder passwordEncoder;
-
-    @Mock
-    private UserService userService;
-*/
 
     @Test
-    @DisplayName("Get bidList")
-    void whenGetBidList_thenReturnsBidList() throws Exception {
+    @DisplayName("Get ratings list")
+    void whenGetRating_thenReturnsRatingsList() throws Exception {
         // ARRANGE
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.findAllBids()).thenReturn(bids);
+        Rating r1 = new Rating("moody1", "sand1", "fitch1", 111);
+        Rating r2 = new Rating("moody2", "sand2", "fitch2", 222);
+        List<Rating> ratings = new ArrayList<>();
+        ratings.add(r1);
+        ratings.add(r2);
+        when(ratingService.findAllRatings()).thenReturn(ratings);
         // ACT
-        String ret = bidListController.home(model);
+        String ret = ratingController.home(model);
         // ASSERT
-        assertThat(ret).hasToString("bidList/list");
+        assertThat(ret).hasToString("rating/list");
     }
 
     @Test
-    @DisplayName("Get /bidList/add")
-    void whenGetAddBidList_thenReturnsBidList() throws Exception {
+    @DisplayName("Get /ratingList/add")
+    void whenGetAddRating_thenReturnsRating() throws Exception {
         // ARRANGE
-        BidList bid = new BidList("account1", "type1", 111.0);
         // ACT
-        String ret = bidListController.addBidForm(bid);
+        String ret = ratingController.addRatingForm();
         // ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("rating/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate")
-    void whenPostValidateBidList_thenReturnsBidList() throws Exception {
+    @DisplayName("Post /rating/validate")
+    void whenPostValidateRating_thenReturnsRatingsList() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("account0", "type0",  333.0);
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.saveBidList(bid0)).thenReturn(bid0);
-        when(bidListService.findAllBids()).thenReturn(bids);
+        Rating r1 = new Rating("moody1", "sand1", "fitch1", 111);
+        Rating r2 = new Rating("moody2", "sand2", "fitch2", 222);
+        List<Rating> ratings = new ArrayList<>();
+        ratings.add(r1);
+        ratings.add(r2);
+        when(ratingService.saveRating(r1)).thenReturn(r2);
+        when(ratingService.findAllRatings()).thenReturn(ratings);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = ratingController.validate(r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("redirect:/bidList/list");
+        assertThat(ret).hasToString("redirect:/rating/list");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate with Account blank")
-    void whenPostValidateBidListWithAccountBlank_thenReturnsBidListAdd() throws Exception {
+    @DisplayName("Post /rating/validate with Moodys blank")
+    void whenPostValidateBidListWithMoodysBlank_thenReturnsRatingAdd() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("", "type0",  333.0);
+        Rating r1 = new Rating("", "sand1", "fitch1", 111);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = ratingController.validate(r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("rating/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate with Type blank")
-    void whenPostValidateBidListWithTypeBlank_thenReturnsBidListAdd() throws Exception {
+    @DisplayName("Post /rating/validate with OrderNumber at null")
+    void whenPostValidateBidListWithOrderNumberNull_thenReturnsRatingAdd() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("Account0", "",  333.0);
+        Rating r1 = new Rating("", "sand1", "fitch1", 0);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = ratingController.validate(r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("rating/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/validate with bidQty null")
-    void whenPostValidateBidListWithBidQtyNull_thenReturnsBidListAdd() throws Exception {
+    @DisplayName("Post /rating/validate with OrderNumber at max")
+    void whenPostValidateBidListWithOrderNumberAtMax_thenReturnsRatingAdd() throws Exception {
         // ARRANGE
-        BidList bid0 = new BidList("Account0", "Type0",  null);
+        Rating r1 = new Rating("moody", "sand1", "fitch1", Integer.MAX_VALUE);
         // ACT
-        String ret = bidListController.validate(bid0, result, model);
+        String ret = ratingController.validate(r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/add");
+        assertThat(ret).hasToString("rating/add");
     }
 
-     @Test
-     @DisplayName("Get /bidList/Update with id")
-     void whenGetUpdate_thenReturnBidListUpdate(){
-         // ARRANGE
-         Integer id = 1;
-         BidList bid0 = new BidList("account0", "type0",  333.0);
-         when(bidListService.findById(id)).thenReturn(bid0);
-         // ACT
-         String ret = bidListController.showUpdateForm(id, model);
-         //ASSERT
-         assertThat(ret).hasToString("bidList/update");
-     }
-
     @Test
-    @DisplayName("Post /bidList/Update with id")
-    void whenPostUpdate_thenReturnBidListUpdate(){
+    @DisplayName("Get /rating/Update with id")
+    void whenGetUpdate_thenReturnRatingUpdate(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  333.0);
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.saveBidList(bid0)).thenReturn(bid1);
-        //when(bidListService.findAllBids()).thenReturn(bids);
+        Rating r1 = new Rating("moody", "sand1", "fitch1", 100);
+        when(ratingService.findById(id)).thenReturn(r1);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = ratingController.showUpdateForm(id, model);
         //ASSERT
-        assertThat(ret).hasToString("redirect:/bidList/list");
+        assertThat(ret).hasToString("rating/update");
     }
 
     @Test
-    @DisplayName("Post /bidList/Update with Save returns null")
-    void whenPostUpdate_thenReturnBidListAtNull(){
+    @DisplayName("Post /rating/Update with id")
+    void whenPostUpdate_thenReturnRatingUpdate(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  333.0);
-        BidList bid1 = new BidList("acc1", "typ1", 111.0);
-        BidList bid2 = new BidList("acc2", "typ2", 222.0);
-        List<BidList> bids = new ArrayList<>();
-        bids.add(bid1);
-        bids.add(bid2);
-        when(bidListService.saveBidList(bid0)).thenReturn(null);
+        Rating r1 = new Rating("moody1", "sand1", "fitch1", 111);
+        Rating r2 = new Rating("moody2", "sand2", "fitch2", 222);
+        List<Rating> ratings = new ArrayList<>();
+        ratings.add(r1);
+        ratings.add(r2);
+        when(ratingService.saveRating(r1)).thenReturn(r2);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = ratingController.updateRating(id, r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("redirect:/rating/list");
     }
 
     @Test
-    @DisplayName("Post /bidList/Update with Account blank")
-    void whenPostUpdate_thenReturnBidListAccountAtNull(){
+    @DisplayName("Post /rating/Update with Save returns null")
+    void whenPostUpdate_thenReturnRatingAtNull(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("", "type0",  333.0);
+        Rating r1 = new Rating("moody1", "sand1", "fitch1", 111);
+        when(ratingService.saveRating(r1)).thenReturn(null);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = ratingController.updateRating(id, r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("rating/update");
     }
 
     @Test
-    @DisplayName("Post /bidList/Update with Type blank")
-    void whenPostUpdate_thenReturnBidListTypeAtNull(){
+    @DisplayName("Post /rating/update with OrderNumber at -1")
+    void whenPostUpdateRatingWithOrderNumberNull_thenReturnsRatingAdd() throws Exception {
         // ARRANGE
-        Integer id = 1;
-        BidList bid0 = new BidList("Account0", "",  333.0);
+        Rating r1 = new Rating("moody", "sand1", "fitch1", -1);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = ratingController.validate(r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("rating/add");
     }
 
     @Test
-    @DisplayName("Post /bidList/Update with bidQty at null")
-    void whenPostUpdate_thenReturnBidListBidQtyAtNull(){
+    @DisplayName("Post /rating/update with OrderNumber at max")
+    void whenPostUpdateRatingWithOrderNumberAtMax_thenReturnsRatingAdd() throws Exception {
         // ARRANGE
-        Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  null);
+        Rating r1 = new Rating("moody", "sand1", "fitch1", Integer.MAX_VALUE);
         // ACT
-        String ret = bidListController.updateBid(id, bid0, result, model);
+        String ret = ratingController.validate(r1, result, model);
         //ASSERT
-        assertThat(ret).hasToString("bidList/update");
+        assertThat(ret).hasToString("rating/add");
     }
-
 
     @Test
-    @DisplayName("Get /bidList/delete")
-    void whenGetDelete_thenReturnBidList(){
+    @DisplayName("Get /rating/delete")
+    void whenGetDelete_thenReturnRating(){
         // ARRANGE
         Integer id = 1;
-        BidList bid0 = new BidList("account0", "type0",  null);
-        when(bidListService.findById(id)).thenReturn(bid0);
+        Rating r1 = new Rating("moody1", "sand1", "fitch1", 123);
+        when(ratingService.findById(id)).thenReturn(r1);
         // ACT
-        String ret = bidListController.deleteBid(id, model);
+        String ret = ratingController.deleteRating(id, model);
         //ASSERT
-        assertThat(ret).hasToString("redirect:/bidList/list");
+        assertThat(ret).hasToString("redirect:/rating/list");
     }
-
-
-
 
 
 
@@ -415,6 +379,7 @@ public class BidListControllerTest {
             return null;
         }
     };
+
     Model model = new Model() {
         @Override
         public Model addAttribute(String attributeName, Object attributeValue) {

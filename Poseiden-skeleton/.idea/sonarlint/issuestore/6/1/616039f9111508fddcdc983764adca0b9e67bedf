@@ -1,10 +1,0 @@
-
-A
-java:S1168"+Return an empty collection instead of null.(¥¹ï
-V
-java:S4684#"@Replace this persistent entity with a simple POJO or DTO object.(ö±Ê
-\
-java:S34576"AFormat specifiers should be used instead of string concatenation.(òâè‘ıÿÿÿÿ
-V
-java:S4684@"@Replace this persistent entity with a simple POJO or DTO object.(ãó§œ
-P	java:S125F"<This block of commented-out lines of code should be removed.(‰Áéu
