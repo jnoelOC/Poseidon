@@ -3,6 +3,8 @@
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.services.impl.RatingService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-<span class="nc" id="L19">public class RatingController {</span>
-    // TODO: Inject Rating service
+<span class="fc" id="L21">public class RatingController {</span>
+<span class="fc" id="L22">    public static final Logger logger = LogManager.getLogger(UserController.class);</span>
 @Autowired
 private RatingService ratingService;
 
@@ -25,34 +27,54 @@ private RatingService ratingService;
     public String home(Model model)
     {
         // TODO: find all Rating, add to model
-<span class="nc" id="L28">        List&lt;Rating&gt; ratings = ratingService.findAllRatings();</span>
-<span class="nc" id="L29">        model.addAttribute(&quot;ratings&quot;, ratings);</span>
-<span class="nc" id="L30">        return &quot;rating/list&quot;;</span>
+<span class="fc" id="L30">        List&lt;Rating&gt; ratings = ratingService.findAllRatings();</span>
+<span class="fc" id="L31">        logger.info(&quot;find all ratings in list&quot;);</span>
+<span class="fc" id="L32">        model.addAttribute(&quot;ratings&quot;, ratings);</span>
+<span class="fc" id="L33">        return &quot;rating/list&quot;;</span>
     }
 
     @GetMapping(&quot;/rating/add&quot;)
     public String addRatingForm() {
-<span class="nc" id="L35">        return &quot;rating/add&quot;;</span>
+<span class="fc" id="L38">        return &quot;rating/add&quot;;</span>
     }
 
     @PostMapping(&quot;/rating/validate&quot;)
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Rating list
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (!result.hasErrors()) {</span>
-<span class="nc" id="L42">            ratingService.saveRating(rating);</span>
-<span class="nc" id="L43">            model.addAttribute(&quot;ratings&quot;, ratingService.findAllRatings());</span>
-<span class="nc" id="L44">            return &quot;redirect:/rating/list&quot;;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if(rating.getMoodysRating().isBlank()){</span>
+<span class="fc" id="L45">            model.addAttribute(&quot;errorMsgMoodys&quot;, &quot;moodysrating est obligatoire&quot;);</span>
+<span class="fc" id="L46">            return &quot;rating/add&quot;;</span>
         }
-<span class="nc" id="L46">        return &quot;rating/add&quot;;</span>
+
+        try{
+<span class="fc bfc" id="L50" title="All 4 branches covered.">            if(rating.getOrderNumber() &lt; 0 || rating.getOrderNumber() &gt; 999999){</span>
+<span class="fc" id="L51">                model.addAttribute(&quot;errorMsgOrderNumber&quot;, &quot;orderNumber est compris entre 0 et 999999&quot;);</span>
+<span class="fc" id="L52">                return &quot;rating/add&quot;;</span>
+            }
+<span class="nc" id="L54">        }catch(Exception ex){</span>
+<span class="nc" id="L55">            logger.error(ex.getMessage());</span>
+<span class="nc" id="L56">            model.addAttribute(&quot;errorMsgOrderNumber&quot;, &quot;orderNumber est compris entre 0 et 999999&quot;);</span>
+<span class="nc" id="L57">            return &quot;rating/add&quot;;</span>
+<span class="fc" id="L58">        }</span>
+
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">        if (!result.hasErrors()) {</span>
+<span class="fc" id="L61">            ratingService.saveRating(rating);</span>
+<span class="fc" id="L62">            logger.info(&quot;validate rating&quot;);</span>
+<span class="fc" id="L63">            model.addAttribute(&quot;ratings&quot;, ratingService.findAllRatings());</span>
+<span class="fc" id="L64">            return &quot;redirect:/rating/list&quot;;</span>
+        }
+<span class="nc" id="L66">        logger.error(&quot;validate ratings in error&quot;);</span>
+<span class="nc" id="L67">        return &quot;rating/add&quot;;</span>
     }
 
     @GetMapping(&quot;/rating/update/{id}&quot;)
     public String showUpdateForm(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: get Rating by Id and to model then show to the form
-<span class="nc" id="L52">        Rating rating = ratingService.findById(id);  //.orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid user Id:&quot; + id));</span>
+<span class="fc" id="L73">        Rating rating = ratingService.findById(id);  //.orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid user Id:&quot; + id));</span>
 
-<span class="nc" id="L54">        model.addAttribute(&quot;rating&quot;, rating);</span>
-<span class="nc" id="L55">        return &quot;rating/update&quot;;</span>
+<span class="fc" id="L75">        logger.info(&quot;Get update ratings by id&quot;);</span>
+<span class="fc" id="L76">        model.addAttribute(&quot;rating&quot;, rating);</span>
+<span class="fc" id="L77">        return &quot;rating/update&quot;;</span>
     }
 
     @PostMapping(&quot;/rating/update/{id}&quot;)
@@ -60,27 +82,36 @@ private RatingService ratingService;
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Rating and return Rating list
 
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L64">            return &quot;rating/update&quot;;</span>
+<span class="pc bpc" id="L85" title="2 of 4 branches missed.">        if(rating.getOrderNumber() &lt; 0 || rating.getOrderNumber() &gt; 999999){</span>
+<span class="nc" id="L86">            model.addAttribute(&quot;errorMsgOrderNumber&quot;, &quot;orderNumber est compris entre 0 et 999999&quot;);</span>
+<span class="nc" id="L87">            return &quot;rating/update&quot;;</span>
         }
-<span class="nc" id="L66">        rating.setId(id);</span>
 
-<span class="nc" id="L68">        Rating rating1 = ratingService.saveRating(rating);</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if(rating1 == null) {</span>
-<span class="nc" id="L70">            return &quot;rating/update&quot;;</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">        if (result.hasErrors()) {</span>
+<span class="nc" id="L91">            logger.error(&quot;Post update ratings in error&quot;);</span>
+<span class="nc" id="L92">            return &quot;rating/update&quot;;</span>
         }
-<span class="nc" id="L72">        model.addAttribute(&quot;rating&quot;, ratingService.findAllRatings());</span>
-<span class="nc" id="L73">        return &quot;redirect:/rating/list&quot;;</span>
+<span class="fc" id="L94">        rating.setId(id);</span>
+
+<span class="fc" id="L96">        Rating rating1 = ratingService.saveRating(rating);</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if(rating1 == null) {</span>
+<span class="fc" id="L98">            logger.error(&quot;rating variable is null&quot;);</span>
+<span class="fc" id="L99">            return &quot;rating/update&quot;;</span>
+        }
+<span class="fc" id="L101">        logger.info(&quot;Post update ratings okay, display all ratings in list&quot;);</span>
+<span class="fc" id="L102">        model.addAttribute(&quot;rating&quot;, ratingService.findAllRatings());</span>
+<span class="fc" id="L103">        return &quot;redirect:/rating/list&quot;;</span>
     }
 
     @GetMapping(&quot;/rating/delete/{id}&quot;)
     public String deleteRating(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Rating by Id and delete the Rating, return to Rating list
-<span class="nc" id="L79">        Rating rating = ratingService.findById(id);</span>
+<span class="fc" id="L109">        Rating rating = ratingService.findById(id);</span>
         //.orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid user Id:&quot; + id));
-<span class="nc" id="L81">        ratingService.deleteRating(rating);</span>
-<span class="nc" id="L82">        model.addAttribute(&quot;rating&quot;, ratingService.findAllRatings());</span>
-<span class="nc" id="L83">        return &quot;redirect:/rating/list&quot;;</span>
+<span class="fc" id="L111">        ratingService.deleteRating(rating);</span>
+<span class="fc" id="L112">        logger.info(&quot;delete rating by id&quot;);</span>
+<span class="fc" id="L113">        model.addAttribute(&quot;rating&quot;, ratingService.findAllRatings());</span>
+<span class="fc" id="L114">        return &quot;redirect:/rating/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

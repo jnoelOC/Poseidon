@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
+
 
 
 @Service
@@ -29,25 +29,22 @@ import java.util.List;
 <span class="fc" id="L29">        return userRepository.findByUsername(username);</span>
     }
 
-    public User findById(Integer id){
+    public User findById(Long id){
 
 <span class="nc" id="L34">        return userRepository.findById(id).get();</span>
     }
     @Transactional
     public User saveUser(User user) {
-<span class="nc" id="L38">        User u1 = null;</span>
-        try {
-<span class="nc" id="L40">                u1 = userRepository.save(user);</span>
-        }
-<span class="nc" id="L42">        catch(Exception ex){</span>
-<span class="nc" id="L43">            logger.error(&quot;Error in saveUser : &quot; + ex.getMessage());</span>
-<span class="nc" id="L44">        }</span>
-<span class="nc" id="L45">        return u1;</span>
+<span class="nc" id="L38">        return userRepository.save(user);</span>
     }
 
     @Transactional
     public void deleteUser(User user){
-<span class="nc" id="L50">        userRepository.delete(user);</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L43">        userRepository.delete(user);</span>
+<span class="nc" id="L44">    }</span>
+
+    public Boolean existsByUsername(String username) {
+<span class="nc" id="L47">        return userRepository.existsByUsername(username);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

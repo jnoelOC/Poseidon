@@ -9,19 +9,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-<span class="nc" id="L12">public class BidListService implements IBidListService {</span>
+<span class="fc" id="L12">public class BidListService implements IBidListService {</span>
 
     @Autowired
     private BidListRepository bidListRepository;
 
     public List&lt;BidList&gt; findAllBids() {
-<span class="nc" id="L18">        return bidListRepository.findAll();</span>
+<span class="fc" id="L18">        return bidListRepository.findAll();</span>
     }
 
-<span class="nc" id="L21">    public BidList findById(Integer id) {return bidListRepository.findById(id).get(); }</span>
+<span class="fc" id="L21">    public BidList findById(Integer id) {return bidListRepository.findById(id).get(); }</span>
 
-<span class="nc" id="L23">    public BidList saveBidList(BidList bid){ return bidListRepository.save(bid); }</span>
+<span class="fc" id="L23">    public BidList saveBidList(BidList bid){ return bidListRepository.save(bid); }</span>
 
-<span class="nc" id="L25">    public void deleteBidList(BidList bid){ bidListRepository.delete(bid); }</span>
+<span class="fc" id="L25">    public void deleteBidList(BidList bid){ bidListRepository.delete(bid); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

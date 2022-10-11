@@ -64,7 +64,7 @@ public class ApiRuleNameController {
     }
 
     @PostMapping("api/rn/create")
-    public ResponseEntity<RuleName> createRatingWithBodyParam(@RequestBody RuleName ruleName) {
+    public ResponseEntity<RuleName> createRuleNameWithBodyParam(@RequestBody RuleName ruleName) {
 
         RuleName rn = ruleNameService.saveRuleName(ruleName);
         if (rn == null) {

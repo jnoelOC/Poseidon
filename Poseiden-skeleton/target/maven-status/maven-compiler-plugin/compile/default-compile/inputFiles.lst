@@ -1,9 +1,10 @@
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\api\ApiRuleNameController.java
-D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\validators\BidValidator.java
+D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\util\JsonParser.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\UserService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\Application.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\BidListRepository.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\CurvePointController.java
+D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\exception\ResourceNotFoundException.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\RuleNameRepository.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\api\ApiRatingController.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\RatingController.java
@@ -11,9 +12,11 @@ D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\m
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\MyUserPrincipal.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\BidListController.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\UserController.java
+D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\validators\password\PasswordConstraintValidator.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\IRuleNameService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\IRatingService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\api\ApiBidController.java
+D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\validators\password\BaseExceptionHandler.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\ITradeService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\MyUserDetailsService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\CurvePointRepository.java
@@ -29,6 +32,7 @@ D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\m
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\TradeController.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\RatingRepository.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\TradeService.java
+D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\exception\BadRequestException.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\UserRepository.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\ICurvePointService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\BidListService.java
@@ -38,5 +42,6 @@ D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\m
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\BidList.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Trade.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\User.java
+D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\validators\password\ValidPassword.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\CurvePointService.java
 D:\Documents\OpenClassrooms\P7-Chambe-Jean-Noel\Poseidon\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\impl\RatingService.java

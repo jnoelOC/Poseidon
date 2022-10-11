@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<span class="nc" id="L17">public class ApiTradeController {</span>
+<span class="fc" id="L17">public class ApiTradeController {</span>
 
-<span class="nc" id="L19">    public static final Logger logger = LogManager.getLogger(ApiTradeController.class);</span>
+<span class="fc" id="L19">    public static final Logger logger = LogManager.getLogger(ApiTradeController.class);</span>
 
     @Autowired
     ITradeService tradeService;
@@ -24,26 +24,26 @@ import java.util.List;
     @GetMapping(&quot;api/trade/list&quot;)
     public List&lt;Trade&gt; findAllTrades() {
 
-<span class="nc" id="L27">        List&lt;Trade&gt; lt = tradeService.findAllTrades();</span>
+<span class="fc" id="L27">        List&lt;Trade&gt; lt = tradeService.findAllTrades();</span>
 
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (lt.isEmpty()) {</span>
-<span class="nc" id="L30">            logger.error(&quot;Find all Trades : status Non trouvé.&quot;);</span>
-<span class="nc" id="L31">            return null;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (lt.isEmpty()) {</span>
+<span class="fc" id="L30">            logger.error(&quot;Find all Trades : status Non trouvé.&quot;);</span>
+<span class="fc" id="L31">            return null;</span>
         }
-<span class="nc" id="L33">        logger.info(&quot;Trades trouvés.&quot;);</span>
-<span class="nc" id="L34">        return lt;</span>
+<span class="fc" id="L33">        logger.info(&quot;Trades trouvés.&quot;);</span>
+<span class="fc" id="L34">        return lt;</span>
     }
 
     @PutMapping(&quot;api/trade/update&quot;)
     public ResponseEntity&lt;Trade&gt; updateTrade(@RequestBody Trade trade) {
 
-<span class="nc" id="L40">        Trade t = tradeService.saveTrade(trade);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (t == null) {</span>
-<span class="nc" id="L42">            logger.error(&quot;update Trade : status Non trouvé.&quot;);</span>
-<span class="nc" id="L43">            return new ResponseEntity&lt;&gt;(t, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L40">        Trade t = tradeService.saveTrade(trade);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (t == null) {</span>
+<span class="fc" id="L42">            logger.error(&quot;update Trade : status Non trouvé.&quot;);</span>
+<span class="fc" id="L43">            return new ResponseEntity&lt;&gt;(t, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L45">            logger.info(&quot;Update Trade : status Ok.&quot;);</span>
-<span class="nc" id="L46">            return new ResponseEntity&lt;&gt;(t, HttpStatus.OK);</span>
+<span class="fc" id="L45">            logger.info(&quot;Update Trade : status Ok.&quot;);</span>
+<span class="fc" id="L46">            return new ResponseEntity&lt;&gt;(t, HttpStatus.OK);</span>
         }
     }
 
@@ -51,29 +51,29 @@ import java.util.List;
     public ResponseEntity&lt;Boolean&gt; deleteTrade(@RequestParam Integer id) {
 
         try {
-<span class="nc" id="L54">            Trade t = tradeService.findById(id);</span>
-<span class="nc" id="L55">            tradeService.deleteTrade(t);</span>
+<span class="fc" id="L54">            Trade t = tradeService.findById(id);</span>
+<span class="fc" id="L55">            tradeService.deleteTrade(t);</span>
 <span class="nc" id="L56">        } catch (Exception ex) {</span>
 <span class="nc" id="L57">            logger.error(&quot;Error delete Trade : &quot;+ ex.getMessage());</span>
 <span class="nc" id="L58">            return new ResponseEntity&lt;&gt;(true, HttpStatus.NOT_FOUND);</span>
-<span class="nc" id="L59">        }</span>
+<span class="fc" id="L59">        }</span>
 
-<span class="nc" id="L61">        logger.info(&quot;Delete Trade : status Trouvé.&quot;);</span>
-<span class="nc" id="L62">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
+<span class="fc" id="L61">        logger.info(&quot;Delete Trade : status Trouvé.&quot;);</span>
+<span class="fc" id="L62">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
 
     }
 
     @PostMapping(&quot;api/trade/create&quot;)
     public ResponseEntity&lt;Trade&gt; createTradeWithBodyParam(@RequestBody Trade trade) {
 
-<span class="nc" id="L69">        Trade t = tradeService.saveTrade(trade);</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (t == null) {</span>
-<span class="nc" id="L71">            logger.error(&quot;create Trade : status Non trouvé.&quot;);</span>
-<span class="nc" id="L72">            return new ResponseEntity&lt;&gt;(t, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L69">        Trade t = tradeService.saveTrade(trade);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (t == null) {</span>
+<span class="fc" id="L71">            logger.error(&quot;create Trade : status Non trouvé.&quot;);</span>
+<span class="fc" id="L72">            return new ResponseEntity&lt;&gt;(t, HttpStatus.NOT_FOUND);</span>
             // throw new PAlreadyCreatedException();
         } else {
-<span class="nc" id="L75">            logger.info(&quot;Create Trade : status Créé.&quot;);</span>
-<span class="nc" id="L76">            return new ResponseEntity&lt;&gt;(t, HttpStatus.CREATED);</span>
+<span class="fc" id="L75">            logger.info(&quot;Create Trade : status Créé.&quot;);</span>
+<span class="fc" id="L76">            return new ResponseEntity&lt;&gt;(t, HttpStatus.CREATED);</span>
         }
 
     }

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<span class="nc" id="L17">public class ApiRuleNameController {</span>
+<span class="fc" id="L17">public class ApiRuleNameController {</span>
 
-<span class="nc" id="L19">    public static final Logger logger = LogManager.getLogger(ApiRuleNameController.class);</span>
+<span class="fc" id="L19">    public static final Logger logger = LogManager.getLogger(ApiRuleNameController.class);</span>
 
     @Autowired
     IRuleNameService ruleNameService;
@@ -24,26 +24,26 @@ import java.util.List;
     @GetMapping(&quot;api/rn/list&quot;)
     public List&lt;RuleName&gt; findAllRuleNames() {
 
-<span class="nc" id="L27">        List&lt;RuleName&gt; lrn = ruleNameService.findAllRuleNames();</span>
+<span class="fc" id="L27">        List&lt;RuleName&gt; lrn = ruleNameService.findAllRuleNames();</span>
 
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (lrn.isEmpty()) {</span>
-<span class="nc" id="L30">            logger.error(&quot;Find all RuleNames : status Non trouvé.&quot;);</span>
-<span class="nc" id="L31">            return null;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (lrn.isEmpty()) {</span>
+<span class="fc" id="L30">            logger.error(&quot;Find all RuleNames : status Non trouvé.&quot;);</span>
+<span class="fc" id="L31">            return null;</span>
         }
-<span class="nc" id="L33">        logger.info(&quot;RuleNames trouvés.&quot;);</span>
-<span class="nc" id="L34">        return lrn;</span>
+<span class="fc" id="L33">        logger.info(&quot;RuleNames trouvés.&quot;);</span>
+<span class="fc" id="L34">        return lrn;</span>
     }
 
     @PutMapping(&quot;api/rn/update&quot;)
     public ResponseEntity&lt;RuleName&gt; updateRuleName(@RequestBody RuleName ruleName) {
 
-<span class="nc" id="L40">        RuleName rn = ruleNameService.saveRuleName(ruleName);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (rn == null) {</span>
-<span class="nc" id="L42">            logger.error(&quot;update RuleName : status Non trouvé.&quot;);</span>
-<span class="nc" id="L43">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L40">        RuleName rn = ruleNameService.saveRuleName(ruleName);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (rn == null) {</span>
+<span class="fc" id="L42">            logger.error(&quot;update RuleName : status Non trouvé.&quot;);</span>
+<span class="fc" id="L43">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L45">            logger.info(&quot;Update RuleName : status Ok.&quot;);</span>
-<span class="nc" id="L46">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.OK);</span>
+<span class="fc" id="L45">            logger.info(&quot;Update RuleName : status Ok.&quot;);</span>
+<span class="fc" id="L46">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.OK);</span>
         }
     }
 
@@ -51,28 +51,28 @@ import java.util.List;
     public ResponseEntity&lt;Boolean&gt; deleteRuleName(@RequestParam Integer id) {
 
         try {
-<span class="nc" id="L54">            RuleName rn = ruleNameService.findById(id);</span>
-<span class="nc" id="L55">            ruleNameService.deleteRuleName(rn);</span>
+<span class="fc" id="L54">            RuleName rn = ruleNameService.findById(id);</span>
+<span class="fc" id="L55">            ruleNameService.deleteRuleName(rn);</span>
 <span class="nc" id="L56">        } catch (Exception ex) {</span>
 <span class="nc" id="L57">            logger.error(&quot;Error delete RuleName : &quot;+ ex.getMessage());</span>
 <span class="nc" id="L58">            return new ResponseEntity&lt;&gt;(true, HttpStatus.NOT_FOUND);</span>
-<span class="nc" id="L59">        }</span>
+<span class="fc" id="L59">        }</span>
 
-<span class="nc" id="L61">        logger.info(&quot;Delete RuleName : status Trouvé.&quot;);</span>
-<span class="nc" id="L62">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
+<span class="fc" id="L61">        logger.info(&quot;Delete RuleName : status Trouvé.&quot;);</span>
+<span class="fc" id="L62">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
 
     }
 
     @PostMapping(&quot;api/rn/create&quot;)
-    public ResponseEntity&lt;RuleName&gt; createRatingWithBodyParam(@RequestBody RuleName ruleName) {
+    public ResponseEntity&lt;RuleName&gt; createRuleNameWithBodyParam(@RequestBody RuleName ruleName) {
 
-<span class="nc" id="L69">        RuleName rn = ruleNameService.saveRuleName(ruleName);</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (rn == null) {</span>
-<span class="nc" id="L71">            logger.error(&quot;create RuleName : status Non trouvé.&quot;);</span>
-<span class="nc" id="L72">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L69">        RuleName rn = ruleNameService.saveRuleName(ruleName);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (rn == null) {</span>
+<span class="fc" id="L71">            logger.error(&quot;create RuleName : status Non trouvé.&quot;);</span>
+<span class="fc" id="L72">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L74">            logger.info(&quot;Create RuleName : status Créé.&quot;);</span>
-<span class="nc" id="L75">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.CREATED);</span>
+<span class="fc" id="L74">            logger.info(&quot;Create RuleName : status Créé.&quot;);</span>
+<span class="fc" id="L75">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.CREATED);</span>
         }
 
     }

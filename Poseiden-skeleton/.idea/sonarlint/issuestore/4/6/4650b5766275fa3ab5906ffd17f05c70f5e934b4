@@ -1,0 +1,33 @@
+
+‡
+java:S11923"jDefine a constant instead of duplicating this literal "orderNumber est compris entre 0 et 999999" 3 times.(ˆ¨Ğ8æ«§ğ·0
+]
+java:S1192L"GDefine a constant instead of duplicating this literal "rating" 3 times.(¢ß»Æ
+l
+java:S1192@"VDefine a constant instead of duplicating this literal "redirect:/rating/list" 3 times.(‘¯şó
+q
+java:S11923"TDefine a constant instead of duplicating this literal "errorMsgOrderNumber" 3 times.(ˆ¨Ğ8æ«§ğ·0
+d
+java:S1192M"NDefine a constant instead of duplicating this literal "rating/update" 4 times.(ñ¨™Â
+a
+java:S1192&"KDefine a constant instead of duplicating this literal "rating/add" 5 times.(“É¸­
+I
+java:S3416"3Update this logger to use "RatingController.class".(Ş»šî
+M
+java:S1135"2Complete the task associated to this TODO comment.(úÁ»ÿÿÿÿÿ
+[
+java:S4684*"@Replace this persistent entity with a simple POJO or DTO object.(ª¿ô¸şÿÿÿÿ
+G
+java:S1135+"2Complete the task associated to this TODO comment.(«¿ƒ
+G
+java:S1135H"2Complete the task associated to this TODO comment.(´¨5
+V	java:S125I"<This block of commented-out lines of code should be removed.(’„÷¢øÿÿÿÿ
+[
+java:S4684Q"@Replace this persistent entity with a simple POJO or DTO object.(ıÈÊÜıÿÿÿÿ
+M
+java:S1135S"2Complete the task associated to this TODO comment.(°ûî†üÿÿÿÿ
+M
+java:S1135l"2Complete the task associated to this TODO comment.(ëû˜Åüÿÿÿÿ
+P	java:S125n"<This block of commented-out lines of code should be removed.(Œ¹0
+Y
+java:S1128">Remove this unused import 'com.nnk.springboot.domain.BidList'.(ŞÉµ‘ùÿÿÿÿ

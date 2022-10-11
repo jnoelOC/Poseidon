@@ -1,7 +1,7 @@
 package com.nnk.springboot.domain.validators.password;
 
 
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
+//@Slf4j
 @RestControllerAdvice
 public class BaseExceptionHandler {
 
@@ -31,7 +31,7 @@ public class BaseExceptionHandler {
                 }
             }
         );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le mot de passe est inccorect");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le mot de passe est incorrect");
     }
 
 }

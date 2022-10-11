@@ -3,40 +3,34 @@
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
-import java.security.Principal;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
-<span class="nc" id="L23">public class MyUserDetailsService implements UserDetailsService {</span>
+<span class="fc" id="L16">public class MyUserDetailsService implements UserDetailsService {</span>
 
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException{
 
-<span class="nc" id="L31">        User user1 = userRepository.findByUsername(username);</span>
+<span class="nc" id="L25">        User user1 = userRepository.findByUsername(username);</span>
 
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (user1 != null) {</span>
-<span class="nc" id="L34">            String role = user1.getRole();</span>
-<span class="nc" id="L35">            return new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(),</span>
-<span class="nc" id="L36">                    Collections.singletonList(new SimpleGrantedAuthority(role)) );</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (user1 != null) {</span>
+<span class="nc" id="L28">            String role = user1.getRole();</span>
+<span class="nc" id="L29">            return new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(),</span>
+<span class="nc" id="L30">                        Collections.singletonList(new SimpleGrantedAuthority(role)));</span>
         }
         else //throw new UsernameNotFoundException(userName);
-<span class="nc" id="L39">            throw new UsernameNotFoundException(&quot;User '&quot; + username + &quot;' was not found in the database.&quot;);</span>
+<span class="nc" id="L33">            throw new UsernameNotFoundException(&quot;User '&quot; + username + &quot;' was not found in the database.&quot;);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

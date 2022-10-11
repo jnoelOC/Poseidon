@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<span class="nc" id="L17">public class ApiRatingController {</span>
+<span class="fc" id="L17">public class ApiRatingController {</span>
 
-<span class="nc" id="L19">    public static final Logger logger = LogManager.getLogger(ApiRatingController.class);</span>
+<span class="fc" id="L19">    public static final Logger logger = LogManager.getLogger(ApiRatingController.class);</span>
 
     @Autowired
     IRatingService ratingService;
@@ -24,26 +24,26 @@ import java.util.List;
     @GetMapping(&quot;api/rating/list&quot;)
     public List&lt;Rating&gt; findAllRatings() {
 
-<span class="nc" id="L27">        List&lt;Rating&gt; lr = ratingService.findAllRatings();</span>
+<span class="fc" id="L27">        List&lt;Rating&gt; lr = ratingService.findAllRatings();</span>
 
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (lr.isEmpty()) {</span>
-<span class="nc" id="L30">            logger.error(&quot;Find all Ratings : status Non trouvé.&quot;);</span>
-<span class="nc" id="L31">            return null;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (lr.isEmpty()) {</span>
+<span class="fc" id="L30">            logger.error(&quot;Find all Ratings : status Non trouvé.&quot;);</span>
+<span class="fc" id="L31">            return null;</span>
         }
-<span class="nc" id="L33">        logger.info(&quot;Ratings trouvés.&quot;);</span>
-<span class="nc" id="L34">        return lr;</span>
+<span class="fc" id="L33">        logger.info(&quot;Ratings trouvés.&quot;);</span>
+<span class="fc" id="L34">        return lr;</span>
     }
 
     @PutMapping(&quot;api/rating/update&quot;)
     public ResponseEntity&lt;Rating&gt; updateRating(@RequestBody Rating rating) {
 
-<span class="nc" id="L40">        Rating r = ratingService.saveRating(rating);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (r == null) {</span>
-<span class="nc" id="L42">            logger.error(&quot;update Rating : status Non trouvé.&quot;);</span>
-<span class="nc" id="L43">            return new ResponseEntity&lt;&gt;(r, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L40">        Rating r = ratingService.saveRating(rating);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (r == null) {</span>
+<span class="fc" id="L42">            logger.error(&quot;update Rating : status Non trouvé.&quot;);</span>
+<span class="fc" id="L43">            return new ResponseEntity&lt;&gt;(r, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L45">            logger.info(&quot;Update Rating : status Ok.&quot;);</span>
-<span class="nc" id="L46">            return new ResponseEntity&lt;&gt;(r, HttpStatus.OK);</span>
+<span class="fc" id="L45">            logger.info(&quot;Update Rating : status Ok.&quot;);</span>
+<span class="fc" id="L46">            return new ResponseEntity&lt;&gt;(r, HttpStatus.OK);</span>
         }
     }
 
@@ -51,28 +51,28 @@ import java.util.List;
     public ResponseEntity&lt;Boolean&gt; deleteRating(@RequestParam Integer id) {
 
         try {
-<span class="nc" id="L54">            Rating r = ratingService.findById(id);</span>
-<span class="nc" id="L55">            ratingService.deleteRating(r);</span>
+<span class="fc" id="L54">            Rating r = ratingService.findById(id);</span>
+<span class="fc" id="L55">            ratingService.deleteRating(r);</span>
 <span class="nc" id="L56">        } catch (Exception ex) {</span>
 <span class="nc" id="L57">            logger.error(&quot;Error delete Rating : &quot;+ ex.getMessage());</span>
 <span class="nc" id="L58">            return new ResponseEntity&lt;&gt;(true, HttpStatus.NOT_FOUND);</span>
-<span class="nc" id="L59">        }</span>
+<span class="fc" id="L59">        }</span>
 
-<span class="nc" id="L61">        logger.info(&quot;Delete Rating : status Trouvé.&quot;);</span>
-<span class="nc" id="L62">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
+<span class="fc" id="L61">        logger.info(&quot;Delete Rating : status Trouvé.&quot;);</span>
+<span class="fc" id="L62">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
 
     }
 
     @PostMapping(&quot;api/rating/create&quot;)
     public ResponseEntity&lt;Rating&gt; createRatingWithBodyParam(@RequestBody Rating rating) {
 
-<span class="nc" id="L69">        Rating r = ratingService.saveRating(rating);</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (r == null) {</span>
-<span class="nc" id="L71">            logger.error(&quot;create Rating : status Non trouvé.&quot;);</span>
-<span class="nc" id="L72">            return new ResponseEntity&lt;&gt;(r, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L69">        Rating r = ratingService.saveRating(rating);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (r == null) {</span>
+<span class="fc" id="L71">            logger.error(&quot;create Rating : status Non trouvé.&quot;);</span>
+<span class="fc" id="L72">            return new ResponseEntity&lt;&gt;(r, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L74">            logger.info(&quot;Create Rating : status Créé.&quot;);</span>
-<span class="nc" id="L75">            return new ResponseEntity&lt;&gt;(r, HttpStatus.CREATED);</span>
+<span class="fc" id="L74">            logger.info(&quot;Create Rating : status Créé.&quot;);</span>
+<span class="fc" id="L75">            return new ResponseEntity&lt;&gt;(r, HttpStatus.CREATED);</span>
         }
 
     }

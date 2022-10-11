@@ -1,92 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poseidon</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.controllers</a> &gt; <span class="el_source">LoginController.java</span></div><h1>LoginController.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.BidListRepository;
-import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.domain.validators.password.PasswordConstraintValidator;
 import com.nnk.springboot.services.impl.BidListService;
-import com.nnk.springboot.services.impl.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @RestController
-//@RequestMapping(&quot;app&quot;)
-<span class="nc" id="L26">public class LoginController {</span>
+<span class="fc" id="L18">public class LoginController {</span>
+
+<span class="fc" id="L20">    public static final Logger logger = LogManager.getLogger(LoginController.class);</span>
 
     @Autowired
     private BidListService bidListService;
 
+
+    @Autowired
+    private PasswordConstraintValidator passwordConstraintValidator;
+
     @GetMapping(&quot;/login&quot;)
-    @RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
-    public ModelAndView login() {
-<span class="nc" id="L34">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L35">        mav.setViewName(&quot;login&quot;);</span>
+    //@RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
+    public ModelAndView login(User user) {
+<span class="nc" id="L32">        ModelAndView mav = new ModelAndView();</span>
+
+<span class="nc" id="L34">        mav.setViewName(&quot;login&quot;);</span>
+<span class="nc" id="L35">        logger.info(&quot;Get Login&quot;);</span>
 <span class="nc" id="L36">        return mav;</span>
     }
 
-    @GetMapping(&quot;/*&quot;)
-    public String getGithub() {
-<span class="nc" id="L41">        return &quot;Welcome, github user !&quot;;</span>
-    }
+/*    @PostMapping(&quot;/login&quot;)
+    //@RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
+    public ModelAndView loginPost(@Valid User user, BindingResult bindingResult, Model model) {
+        ModelAndView mav = new ModelAndView();
 
-    @PostMapping(&quot;/login&quot;)
-    @RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
-    public ModelAndView loginPost(Model model) {
-<span class="nc" id="L47">        ModelAndView mav = new ModelAndView();</span>
+        if (bindingResult.hasErrors()) {
+            mav.setViewName(&quot;templates/error&quot;);
+            logger.error(&quot;Post Login error&quot;);
+            return mav;
+        }
 
-<span class="nc" id="L49">            model.addAttribute(&quot;bids&quot;, bidListService.findAllBids());</span>
-//            mav.setViewName(&quot;home&quot;);
-<span class="nc" id="L51">        mav.setViewName(&quot;bidList/list&quot;);</span>
+ //       model.addAttribute(&quot;bids&quot;, bidListService.findAllBids());
+ //       mav.setViewName(&quot;bidList/list&quot;);
 
-<span class="nc" id="L53">        return mav;</span>
-    }
+        logger.info(&quot;Post Login&quot;);
+        return mav;
+    }*/
 
     @GetMapping(&quot;/logout&quot;)
     @RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
     public ModelAndView logout() {
-<span class="nc" id="L59">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L60">        mav.setViewName(&quot;login&quot;);</span>
-<span class="nc" id="L61">        return mav;</span>
+<span class="nc" id="L60">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L61">        mav.setViewName(&quot;login&quot;);</span>
+<span class="nc" id="L62">        logger.info(&quot;Get Logout&quot;);</span>
+<span class="nc" id="L63">        return mav;</span>
     }
 
-
-/*
-    @GetMapping(&quot;/app-logout&quot;)
-    @RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
-    public ModelAndView logout() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName(&quot;login&quot;);
-        return mav;
-    }
-*/
-/*
-    @GetMapping(&quot;secure/article-details&quot;)
-    public ModelAndView getAllUserArticles() {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject(&quot;users&quot;, userRepository.findAll());
-        mav.setViewName(&quot;user/list&quot;);
-        return mav;
-    }
-*/
-    @GetMapping(&quot;/error&quot;)
+    @GetMapping(&quot;/templates/error&quot;)
     public ModelAndView error() {
-<span class="nc" id="L85">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L86">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>
-<span class="nc" id="L87">        mav.addObject(&quot;errorMsg&quot;, errorMessage);</span>
-<span class="nc" id="L88">        mav.setViewName(&quot;403&quot;);</span>
-<span class="nc" id="L89">        return mav;</span>
+<span class="nc" id="L68">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L69">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>
+<span class="nc" id="L70">        mav.addObject(&quot;errorMsg&quot;, errorMessage);</span>
+<span class="nc" id="L71">        mav.setViewName(&quot;error/403&quot;);</span>
+<span class="nc" id="L72">        logger.error(&quot;Get 403&quot;);</span>
+<span class="nc" id="L73">        return mav;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

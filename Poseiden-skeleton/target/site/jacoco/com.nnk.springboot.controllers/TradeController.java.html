@@ -3,6 +3,8 @@
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.services.impl.TradeService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-<span class="nc" id="L19">public class TradeController {</span>
-    // TODO: Inject Trade service
+<span class="fc" id="L21">public class TradeController {</span>
+<span class="fc" id="L22">    public static final Logger logger = LogManager.getLogger(UserController.class);</span>
 
     @Autowired
     private TradeService tradeService;
@@ -26,36 +28,61 @@ import java.util.List;
     public String home(Model model)
     {
         // TODO: find all Trade, add to model
-<span class="nc" id="L29">        List&lt;Trade&gt; trades = tradeService.findAllTrades();</span>
-<span class="nc" id="L30">        model.addAttribute(&quot;trades&quot;, trades);</span>
-<span class="nc" id="L31">        return &quot;trade/list&quot;;</span>
+<span class="fc" id="L31">        List&lt;Trade&gt; trades = tradeService.findAllTrades();</span>
+<span class="fc" id="L32">        logger.info(&quot;List all trades&quot;);</span>
+<span class="fc" id="L33">        model.addAttribute(&quot;trades&quot;, trades);</span>
+<span class="fc" id="L34">        return &quot;trade/list&quot;;</span>
     }
 
     @GetMapping(&quot;/trade/add&quot;)
-    public String addUser(Trade bid) {
-<span class="nc" id="L36">        return &quot;trade/add&quot;;</span>
+    public String addTrade(Trade bid) {
+<span class="fc" id="L39">        return &quot;trade/add&quot;;</span>
     }
 
     @PostMapping(&quot;/trade/validate&quot;)
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Trade list
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (!result.hasErrors()) {</span>
-<span class="nc" id="L43">            tradeService.saveTrade(trade);</span>
-<span class="nc" id="L44">            model.addAttribute(&quot;trades&quot;, tradeService.findAllTrades());</span>
-<span class="nc" id="L45">            return &quot;redirect:/trade/list&quot;;</span>
+
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if(trade.getAccount().isBlank()){</span>
+<span class="fc" id="L48">            model.addAttribute(&quot;errorMsgAccount&quot;, &quot;Account est obligatoire&quot;);</span>
+<span class="fc" id="L49">            return &quot;trade/add&quot;;</span>
+        }
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if(trade.getType().isBlank()){</span>
+<span class="fc" id="L52">            model.addAttribute(&quot;errorMsgType&quot;, &quot;Type est obligatoire&quot;);</span>
+<span class="fc" id="L53">            return &quot;trade/add&quot;;</span>
+        }
+        try {
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">            if (trade.getBuyQuantity().isNaN()) {</span>
+<span class="nc" id="L57">                model.addAttribute(&quot;errorMsgBuyQty&quot;, &quot;BuyQuantity est obligatoire&quot;);</span>
+<span class="nc" id="L58">                return &quot;trade/add&quot;;</span>
+            }
+<span class="fc" id="L60">        }catch(Exception ex){</span>
+<span class="fc" id="L61">            logger.error(ex.getMessage());</span>
+<span class="fc" id="L62">            model.addAttribute(&quot;errorMsgBuyQty&quot;, &quot;BuyQuantity est obligatoire&quot;);</span>
+<span class="fc" id="L63">            return &quot;trade/add&quot;;</span>
+<span class="fc" id="L64">        }</span>
+
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (!result.hasErrors()) {</span>
+<span class="fc" id="L67">            tradeService.saveTrade(trade);</span>
+<span class="fc" id="L68">            logger.info(&quot;Post validate trade&quot;);</span>
+<span class="fc" id="L69">            model.addAttribute(&quot;trades&quot;, tradeService.findAllTrades());</span>
+<span class="fc" id="L70">            return &quot;redirect:/trade/list&quot;;</span>
         }
 
-<span class="nc" id="L48">        return &quot;trade/add&quot;;</span>
+<span class="nc" id="L73">        logger.error(&quot;Post validate trade in error&quot;);</span>
+<span class="nc" id="L74">        return &quot;trade/add&quot;;</span>
     }
 
     @GetMapping(&quot;/trade/update/{id}&quot;)
     public String showUpdateForm(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: get Trade by Id and to model then show to the form
 
-<span class="nc" id="L55">        Trade trade = tradeService.findById(id);  //.orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid user Id:&quot; + id));</span>
-<span class="nc" id="L56">        model.addAttribute(&quot;trade&quot;, trade);</span>
+<span class="fc" id="L81">        Trade trade = tradeService.findById(id);  //.orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid user Id:&quot; + id));</span>
+<span class="fc" id="L82">        logger.info(&quot;Get update trade by id&quot;);</span>
+<span class="fc" id="L83">        model.addAttribute(&quot;trade&quot;, trade);</span>
 
-<span class="nc" id="L58">        return &quot;trade/update&quot;;</span>
+<span class="fc" id="L85">        return &quot;trade/update&quot;;</span>
     }
 
     @PostMapping(&quot;/trade/update/{id}&quot;)
@@ -63,30 +90,42 @@ import java.util.List;
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Trade and return Trade list
 
-
-<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L68">            return &quot;trade/update&quot;;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if(trade.getAccount().isBlank()){</span>
+<span class="fc" id="L94">            model.addAttribute(&quot;errorMsgAccount&quot;, &quot;Account est obligatoire&quot;);</span>
+<span class="fc" id="L95">            return &quot;trade/add&quot;;</span>
         }
-<span class="nc" id="L70">        trade.setTradeId(id);</span>
-
-<span class="nc" id="L72">        Trade trade1 = tradeService.saveTrade(trade);</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if(trade1 == null) {</span>
-<span class="nc" id="L74">            return &quot;trade/update&quot;;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if(trade.getType().isBlank()){</span>
+<span class="fc" id="L98">            model.addAttribute(&quot;errorMsgType&quot;, &quot;Type est obligatoire&quot;);</span>
+<span class="fc" id="L99">            return &quot;trade/add&quot;;</span>
         }
-<span class="nc" id="L76">        model.addAttribute(&quot;trade&quot;, tradeService.findAllTrades());</span>
 
-<span class="nc" id="L78">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        if (result.hasErrors()) {</span>
+<span class="nc" id="L103">            logger.error(&quot;Post update trade in error&quot;);</span>
+<span class="nc" id="L104">            return &quot;trade/update&quot;;</span>
+        }
+<span class="fc" id="L106">        trade.setTradeId(id);</span>
+
+<span class="fc" id="L108">        Trade trade1 = tradeService.saveTrade(trade);</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if(trade1 == null) {</span>
+<span class="fc" id="L110">            logger.error(&quot;trade variable is null&quot;);</span>
+<span class="fc" id="L111">            return &quot;trade/add&quot;;</span>
+        }
+<span class="fc" id="L113">        model.addAttribute(&quot;trade&quot;, tradeService.findAllTrades());</span>
+
+<span class="fc" id="L115">        logger.info(&quot;Post update trade and display all trades in list&quot;);</span>
+<span class="fc" id="L116">        return &quot;redirect:/trade/list&quot;;</span>
     }
 
     @GetMapping(&quot;/trade/delete/{id}&quot;)
     public String deleteTrade(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Trade by Id and delete the Trade, return to Trade list
 
-<span class="nc" id="L85">        Trade trade = tradeService.findById(id);</span>
-<span class="nc" id="L86">        tradeService.deleteTrade(trade);</span>
-<span class="nc" id="L87">        model.addAttribute(&quot;trade&quot;, tradeService.findAllTrades());</span>
+<span class="fc" id="L123">        Trade trade = tradeService.findById(id);</span>
+<span class="fc" id="L124">        tradeService.deleteTrade(trade);</span>
+<span class="fc" id="L125">        logger.info(&quot;delete trade by id&quot;);</span>
+<span class="fc" id="L126">        model.addAttribute(&quot;trade&quot;, tradeService.findAllTrades());</span>
 
-<span class="nc" id="L89">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="fc" id="L128">        return &quot;redirect:/trade/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

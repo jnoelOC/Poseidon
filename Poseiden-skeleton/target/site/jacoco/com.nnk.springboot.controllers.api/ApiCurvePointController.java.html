@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<span class="nc" id="L15">public class ApiCurvePointController {</span>
-<span class="nc" id="L16">    public static final Logger logger = LogManager.getLogger(ApiCurvePointController.class);</span>
+<span class="fc" id="L15">public class ApiCurvePointController {</span>
+<span class="fc" id="L16">    public static final Logger logger = LogManager.getLogger(ApiCurvePointController.class);</span>
 
     @Autowired
     ICurvePointService cpService;
@@ -21,26 +21,26 @@ import java.util.List;
     @GetMapping(&quot;api/cp/list&quot;)
     public List&lt;CurvePoint&gt; findAllCurvePoints() {
 
-<span class="nc" id="L24">        List&lt;CurvePoint&gt; lcp = cpService.findAllCurvePoints();</span>
+<span class="fc" id="L24">        List&lt;CurvePoint&gt; lcp = cpService.findAllCurvePoints();</span>
 
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (lcp.isEmpty()) {</span>
-<span class="nc" id="L27">            logger.error(&quot;Find all curvePoint : status Non trouvé.&quot;);</span>
-<span class="nc" id="L28">            return null;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (lcp.isEmpty()) {</span>
+<span class="fc" id="L27">            logger.error(&quot;Find all curvePoint : status Non trouvé.&quot;);</span>
+<span class="fc" id="L28">            return null;</span>
         }
-<span class="nc" id="L30">        logger.info(&quot;curve points trouvés.&quot;);</span>
-<span class="nc" id="L31">        return lcp;</span>
+<span class="fc" id="L30">        logger.info(&quot;curve points trouvés.&quot;);</span>
+<span class="fc" id="L31">        return lcp;</span>
     }
 
     @PutMapping(&quot;api/cp/update&quot;)
     public ResponseEntity&lt;CurvePoint&gt; updateCurvePoint(@RequestBody CurvePoint curvePoint) {
 
-<span class="nc" id="L37">        CurvePoint cp = cpService.saveCurvePoint(curvePoint);</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (cp == null) {</span>
-<span class="nc" id="L39">            logger.error(&quot;update CurvePoint : status Non trouvé.&quot;);</span>
-<span class="nc" id="L40">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L37">        CurvePoint cp = cpService.saveCurvePoint(curvePoint);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (cp == null) {</span>
+<span class="fc" id="L39">            logger.error(&quot;update CurvePoint : status Non trouvé.&quot;);</span>
+<span class="fc" id="L40">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L42">            logger.info(&quot;Update CurvePoint : status Ok.&quot;);</span>
-<span class="nc" id="L43">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.OK);</span>
+<span class="fc" id="L42">            logger.info(&quot;Update CurvePoint : status Ok.&quot;);</span>
+<span class="fc" id="L43">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.OK);</span>
         }
     }
 
@@ -48,29 +48,29 @@ import java.util.List;
     public ResponseEntity&lt;Boolean&gt; deleteCurvePoint(@RequestParam Integer id) {
 
         try {
-<span class="nc" id="L51">            CurvePoint cp = cpService.findById(id);</span>
-<span class="nc" id="L52">            cpService.deleteCurvePoint(cp);</span>
+<span class="fc" id="L51">            CurvePoint cp = cpService.findById(id);</span>
+<span class="fc" id="L52">            cpService.deleteCurvePoint(cp);</span>
 <span class="nc" id="L53">        } catch (Exception ex) {</span>
 <span class="nc" id="L54">            logger.error(&quot;Error delete CurvePoint : &quot;+ ex.getMessage());</span>
 <span class="nc" id="L55">            return new ResponseEntity&lt;&gt;(true, HttpStatus.NOT_FOUND);</span>
-<span class="nc" id="L56">        }</span>
+<span class="fc" id="L56">        }</span>
 
-<span class="nc" id="L58">        logger.info(&quot;Delete CurvePoint : status Trouvé.&quot;);</span>
-<span class="nc" id="L59">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
+<span class="fc" id="L58">        logger.info(&quot;Delete CurvePoint : status Trouvé.&quot;);</span>
+<span class="fc" id="L59">        return new ResponseEntity&lt;&gt;(true, HttpStatus.FOUND);</span>
 
     }
 
     @PostMapping(&quot;api/cp/create&quot;)
     public ResponseEntity&lt;CurvePoint&gt; createCurvePointWithBodyParam(@RequestBody CurvePoint curvePoint) {
 
-<span class="nc" id="L66">        CurvePoint cp = cpService.saveCurvePoint(curvePoint);</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (cp == null) {</span>
-<span class="nc" id="L68">            logger.error(&quot;create CurvePoint : status Non trouvé.&quot;);</span>
-<span class="nc" id="L69">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L66">        CurvePoint cp = cpService.saveCurvePoint(curvePoint);</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (cp == null) {</span>
+<span class="fc" id="L68">            logger.error(&quot;create CurvePoint : status Non trouvé.&quot;);</span>
+<span class="fc" id="L69">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.NOT_FOUND);</span>
             // throw new PAlreadyCreatedException();
         } else {
-<span class="nc" id="L72">            logger.info(&quot;Create CurvePoint : status Créé.&quot;);</span>
-<span class="nc" id="L73">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.CREATED);</span>
+<span class="fc" id="L72">            logger.info(&quot;Create CurvePoint : status Créé.&quot;);</span>
+<span class="fc" id="L73">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.CREATED);</span>
         }
 
     }
