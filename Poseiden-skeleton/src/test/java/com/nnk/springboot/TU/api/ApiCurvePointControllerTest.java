@@ -133,6 +133,27 @@ public class ApiCurvePointControllerTest {
         Assert.assertNull(records);
     }
 
+    @Test
+    @DisplayName("Find one CurvePoint with success")
+    public void findOneRecord_success() throws Exception {
+        // ARRANGE
+        Mockito.when(curvePointService.findById(1)).thenReturn(RECORD_2);
+        //ACT
+        ResponseEntity<CurvePoint> re = apiCPController.findOneCurvePoint(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.FOUND, re.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Find one CurvePoint with failing")
+    public void findOneRecord_failing() throws Exception {
+        // ARRANGE
+        Mockito.when(curvePointService.findById(1)).thenReturn(null);
+        //ACT
+        ResponseEntity<CurvePoint> re = apiCPController.findOneCurvePoint(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.NOT_FOUND, re.getStatusCode());
+    }
 
 
 }

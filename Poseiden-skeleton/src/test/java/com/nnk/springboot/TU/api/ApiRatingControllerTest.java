@@ -3,6 +3,7 @@ package com.nnk.springboot.TU.api;
 
 import com.nnk.springboot.controllers.api.ApiCurvePointController;
 import com.nnk.springboot.controllers.api.ApiRatingController;
+import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.services.impl.CurvePointService;
@@ -133,4 +134,25 @@ public class ApiRatingControllerTest {
         Assert.assertNull(records);
     }
 
+    @Test
+    @DisplayName("Find one Rating with success")
+    public void findOneRecord_success() throws Exception {
+        // ARRANGE
+        Mockito.when(ratingService.findById(1)).thenReturn(RECORD_2);
+        //ACT
+        ResponseEntity<Rating> re = apiRatingController.findOneRating(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.FOUND, re.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Find one Rating with failing")
+    public void findOneRecord_failing() throws Exception {
+        // ARRANGE
+        Mockito.when(ratingService.findById(1)).thenReturn(null);
+        //ACT
+        ResponseEntity<Rating> re = apiRatingController.findOneRating(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.NOT_FOUND, re.getStatusCode());
+    }
 }

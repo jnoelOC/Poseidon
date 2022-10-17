@@ -79,13 +79,13 @@ import java.util.List;
     @GetMapping(&quot;api/bid/getOne&quot;)
     public ResponseEntity&lt;BidList&gt; findOneBid(@RequestParam Integer id) {
 
-<span class="nc" id="L82">        BidList bid = bidListService.findById(id);</span>
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (bid == null) {</span>
-<span class="nc" id="L84">            logger.error(&quot;FindOneBid : status Non trouvé.&quot;);</span>
-<span class="nc" id="L85">            return new ResponseEntity&lt;&gt;(bid, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L82">        BidList bid = bidListService.findById(id);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (bid == null) {</span>
+<span class="fc" id="L84">            logger.error(&quot;FindOneBid : status Non trouvé.&quot;);</span>
+<span class="fc" id="L85">            return new ResponseEntity&lt;&gt;(bid, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L87">            logger.info(&quot;status bid trouvé.&quot;);</span>
-<span class="nc" id="L88">            return new ResponseEntity&lt;&gt;(bid, HttpStatus.FOUND);</span>
+<span class="fc" id="L87">            logger.info(&quot;status bid trouvé.&quot;);</span>
+<span class="fc" id="L88">            return new ResponseEntity&lt;&gt;(bid, HttpStatus.FOUND);</span>
         }
     }
 

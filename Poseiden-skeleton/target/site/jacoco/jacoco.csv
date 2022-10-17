@@ -2,11 +2,11 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Poseidon,com.nnk.springboot.controllers,LoginController,43,7,0,0,14,2,3,2,3,2
 Poseidon,com.nnk.springboot.controllers,HomeController,2,3,0,0,1,1,1,1,1,1
 Poseidon,com.nnk.springboot.controllers,UserController,19,187,2,20,5,43,2,17,0,8
-Poseidon,com.nnk.springboot.controllers,CurvePointController,25,147,6,8,8,42,6,9,0,8
+Poseidon,com.nnk.springboot.controllers,CurvePointController,8,164,4,10,3,47,4,11,0,8
 Poseidon,com.nnk.springboot.controllers,BidListController,18,181,4,14,6,52,4,13,0,8
 Poseidon,com.nnk.springboot.controllers,RatingController,29,146,4,12,10,38,4,12,0,8
 Poseidon,com.nnk.springboot.controllers,TradeController,17,170,3,13,6,48,3,13,0,8
-Poseidon,com.nnk.springboot.controllers,RuleNameController,17,124,3,7,6,34,3,10,0,8
+Poseidon,com.nnk.springboot.controllers,RuleNameController,10,131,2,8,4,36,2,11,0,8
 Poseidon,com.nnk.springboot.services.impl,MyUserDetailsService,29,3,2,0,6,1,2,1,1,1
 Poseidon,com.nnk.springboot.services.impl,UserService,27,12,0,0,6,3,5,3,5,3
 Poseidon,com.nnk.springboot.services.impl,TradeService,0,25,0,0,0,5,0,5,0,5
@@ -28,8 +28,8 @@ Poseidon,com.nnk.springboot.domain,BidList,210,28,0,0,85,11,41,6,41,6
 Poseidon,com.nnk.springboot.domain,Trade,130,29,0,0,56,12,37,7,37,7
 Poseidon,com.nnk.springboot.domain,User,29,39,0,0,12,17,4,9,4,9
 Poseidon,com.nnk.springboot.domain,CurvePoint,31,26,0,0,13,12,9,5,9,5
-Poseidon,com.nnk.springboot.controllers.api,ApiRuleNameController,38,94,2,6,9,25,2,9,1,6
-Poseidon,com.nnk.springboot.controllers.api,ApiRatingController,38,94,2,6,9,25,2,9,1,6
-Poseidon,com.nnk.springboot.controllers.api,ApiBidController,38,94,2,6,9,25,2,9,1,6
-Poseidon,com.nnk.springboot.controllers.api,ApiCurvePointController,38,94,2,6,9,25,2,9,1,6
-Poseidon,com.nnk.springboot.controllers.api,ApiTradeController,38,94,2,6,9,25,2,9,1,6
+Poseidon,com.nnk.springboot.controllers.api,ApiRuleNameController,13,119,0,8,3,31,0,11,0,7
+Poseidon,com.nnk.springboot.controllers.api,ApiRatingController,13,119,0,8,3,31,0,11,0,7
+Poseidon,com.nnk.springboot.controllers.api,ApiBidController,13,119,0,8,3,31,0,11,0,7
+Poseidon,com.nnk.springboot.controllers.api,ApiCurvePointController,13,119,0,8,3,31,0,11,0,7
+Poseidon,com.nnk.springboot.controllers.api,ApiTradeController,13,119,0,8,3,31,0,11,0,7

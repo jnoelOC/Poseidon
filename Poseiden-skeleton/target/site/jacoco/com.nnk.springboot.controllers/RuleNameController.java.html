@@ -72,9 +72,9 @@ private RuleNameService ruleNameService;
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update RuleName and return RuleName list
 
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if(ruleName.getName().isBlank()){</span>
-<span class="nc" id="L76">            model.addAttribute(&quot;errorMsgName&quot;, &quot;name est obligatoire&quot;);</span>
-<span class="nc" id="L77">            return &quot;ruleName/add&quot;;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if(ruleName.getName().isBlank()){</span>
+<span class="fc" id="L76">            model.addAttribute(&quot;errorMsgName&quot;, &quot;name est obligatoire&quot;);</span>
+<span class="fc" id="L77">            return &quot;ruleName/add&quot;;</span>
         }
 
 <span class="pc bpc" id="L80" title="1 of 2 branches missed.">        if (result.hasErrors()) {</span>

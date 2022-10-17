@@ -79,13 +79,13 @@ import java.util.List;
     @GetMapping(&quot;api/cp/getOne&quot;)
     public ResponseEntity&lt;CurvePoint&gt; findOneCurvePoint(@RequestParam Integer id) {
 
-<span class="nc" id="L82">        CurvePoint cp = cpService.findById(id);</span>
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (cp == null) {</span>
-<span class="nc" id="L84">            logger.error(&quot;FindOneCurvePoint : status Non trouvé.&quot;);</span>
-<span class="nc" id="L85">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L82">        CurvePoint cp = cpService.findById(id);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (cp == null) {</span>
+<span class="fc" id="L84">            logger.error(&quot;FindOneCurvePoint : status Non trouvé.&quot;);</span>
+<span class="fc" id="L85">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L87">            logger.info(&quot;status CurvePoint trouvé.&quot;);</span>
-<span class="nc" id="L88">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.FOUND);</span>
+<span class="fc" id="L87">            logger.info(&quot;status CurvePoint trouvé.&quot;);</span>
+<span class="fc" id="L88">            return new ResponseEntity&lt;&gt;(cp, HttpStatus.FOUND);</span>
         }
     }
 }

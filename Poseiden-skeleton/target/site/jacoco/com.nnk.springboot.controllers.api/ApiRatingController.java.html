@@ -81,13 +81,13 @@ import java.util.List;
     @GetMapping(&quot;api/rating/getOne&quot;)
     public ResponseEntity&lt;Rating&gt; findOneRating(@RequestParam Integer id) {
 
-<span class="nc" id="L84">        Rating r = ratingService.findById(id);</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (r == null) {</span>
-<span class="nc" id="L86">            logger.error(&quot;FindOneRating : status Non trouvé.&quot;);</span>
-<span class="nc" id="L87">            return new ResponseEntity&lt;&gt;(r, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L84">        Rating r = ratingService.findById(id);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (r == null) {</span>
+<span class="fc" id="L86">            logger.error(&quot;FindOneRating : status Non trouvé.&quot;);</span>
+<span class="fc" id="L87">            return new ResponseEntity&lt;&gt;(r, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L89">            logger.info(&quot;status Rating trouvé.&quot;);</span>
-<span class="nc" id="L90">            return new ResponseEntity&lt;&gt;(r, HttpStatus.FOUND);</span>
+<span class="fc" id="L89">            logger.info(&quot;status Rating trouvé.&quot;);</span>
+<span class="fc" id="L90">            return new ResponseEntity&lt;&gt;(r, HttpStatus.FOUND);</span>
         }
     }
 

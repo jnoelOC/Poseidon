@@ -81,13 +81,13 @@ import java.util.List;
     @GetMapping(&quot;api/rn/getOne&quot;)
     public ResponseEntity&lt;RuleName&gt; findOneRuleName(@RequestParam Integer id) {
 
-<span class="nc" id="L84">        RuleName rn = ruleNameService.findById(id);</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (rn == null) {</span>
-<span class="nc" id="L86">            logger.error(&quot;FindOneRuleName : status Non trouvé.&quot;);</span>
-<span class="nc" id="L87">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L84">        RuleName rn = ruleNameService.findById(id);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (rn == null) {</span>
+<span class="fc" id="L86">            logger.error(&quot;FindOneRuleName : status Non trouvé.&quot;);</span>
+<span class="fc" id="L87">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.NOT_FOUND);</span>
         } else {
-<span class="nc" id="L89">            logger.info(&quot;status RuleName trouvé.&quot;);</span>
-<span class="nc" id="L90">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.FOUND);</span>
+<span class="fc" id="L89">            logger.info(&quot;status RuleName trouvé.&quot;);</span>
+<span class="fc" id="L90">            return new ResponseEntity&lt;&gt;(rn, HttpStatus.FOUND);</span>
         }
     }
 }

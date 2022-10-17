@@ -80,7 +80,7 @@ public class ApiTradeController {
 
 
     @GetMapping("api/trade/getOne")
-    public ResponseEntity<Trade> findOneBid(@RequestParam Integer id) {
+    public ResponseEntity<Trade> findOneTrade(@RequestParam Integer id) {
 
         Trade t = tradeService.findById(id);
         if (t == null) {

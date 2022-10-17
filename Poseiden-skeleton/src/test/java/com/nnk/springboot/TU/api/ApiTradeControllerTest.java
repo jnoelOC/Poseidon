@@ -2,6 +2,7 @@ package com.nnk.springboot.TU.api;
 
 import com.nnk.springboot.controllers.api.ApiRatingController;
 import com.nnk.springboot.controllers.api.ApiTradeController;
+import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.services.impl.RatingService;
@@ -134,4 +135,25 @@ public class ApiTradeControllerTest {
         Assert.assertNull(records);
     }
 
+    @Test
+    @DisplayName("Find one Trade with success")
+    public void findOneRecord_success() throws Exception {
+        // ARRANGE
+        Mockito.when(tradeService.findById(1)).thenReturn(RECORD_2);
+        //ACT
+        ResponseEntity<Trade> re = apiTradeController.findOneTrade(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.FOUND, re.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Find one Trade with failing")
+    public void findOneRecord_failing() throws Exception {
+        // ARRANGE
+        Mockito.when(tradeService.findById(1)).thenReturn(null);
+        //ACT
+        ResponseEntity<Trade> re = apiTradeController.findOneTrade(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.NOT_FOUND, re.getStatusCode());
+    }
 }

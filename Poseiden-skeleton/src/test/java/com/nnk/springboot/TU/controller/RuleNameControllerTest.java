@@ -123,6 +123,19 @@ public class RuleNameControllerTest {
     }
 
     @Test
+    @DisplayName("Post /ruleName/Update with name blank")
+    void whenPostUpdateWithNameAtBlank_thenReturnRuleNameUpdate(){
+        // ARRANGE
+        Integer id = 1;
+        RuleName rn1 = new RuleName("", "descr1", "json1","template1", "Sql1","Part1");
+
+        // ACT
+        String ret = ruleNameController.updateRuleName(id, rn1, result, model);
+        //ASSERT
+        assertThat(ret).hasToString("ruleName/add");
+    }
+
+    @Test
     @DisplayName("Post /ruleName/Update with Save returns null")
     void whenPostUpdate_thenReturnRuleNameAtNull(){
         // ARRANGE

@@ -88,11 +88,36 @@ public class CurvePointControllerTest {
     void whenPostCurvePointIdValidate_ThenReturnsCurvePointAddString(){
         // ARRANGE
         CurvePoint cp1 = new CurvePoint(1, 11.0, 22.0);
+        cp1.setCurveId(0);
         // ACT
         String ret = curvePointController.validate(cp1, result, model);
         // ASSERT
         assertThat(ret).hasToString("curvePoint/add");
     }
+
+    @Test
+    @DisplayName("Post validate with CurvePointId at null")
+    void whenPostCurvePointValidateAtNull_ThenReturnsCurvePointAddString(){
+        // ARRANGE
+        CurvePoint cp1 = null;
+        // ACT
+        String ret = curvePointController.validate(cp1, result, model);
+        // ASSERT
+        assertThat(ret).hasToString("curvePoint/add");
+    }
+
+    @Test
+    @DisplayName("Post validate with CurvePointId < 0")
+    void whenPostCurvePointValidateWithNegativeId_ThenReturnsCurvePointAddString(){
+        // ARRANGE
+        CurvePoint cp1 = new CurvePoint(-2, 11.0, 22.0);
+        // ACT
+        String ret = curvePointController.validate(cp1, result, model);
+        // ASSERT
+        assertThat(ret).hasToString("curvePoint/add");
+    }
+
+
 
     @Test
     @DisplayName("Get update with Id")
@@ -126,10 +151,23 @@ public class CurvePointControllerTest {
 
     @Test
     @DisplayName("Post update with CurvePointId at null")
-    void whenPostCurvePointUpdate_ThenReturnsCurvePointUpdateString(){
+    void whenPostCurvePointUpdateAtNull_ThenReturnsCurvePointUpdateString(){
+        // ARRANGE
+        Integer id = 1;
+        CurvePoint cp1 = null;
+        // ACT
+        String ret = curvePointController.updateCP(id, cp1, result, model);
+        // ASSERT
+        assertThat(ret).hasToString("curvePoint/update");
+    }
+
+    @Test
+    @DisplayName("Post update with CurvePointId < 0")
+    void whenPostCurvePointUpdateWithNegativeId_ThenReturnsCurvePointUpdateString(){
         // ARRANGE
         Integer id = 1;
         CurvePoint cp1 = new CurvePoint(2, 11.0, 22.0);
+        cp1.setCurveId(-4);
         // ACT
         String ret = curvePointController.updateCP(id, cp1, result, model);
         // ASSERT

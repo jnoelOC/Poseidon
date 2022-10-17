@@ -12,10 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +28,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@EnableWebMvc
+@ActiveProfiles("test")
 @WithMockUser(username = "admin")
 public class ApiBidControllerIT {
 
-
+/*
     @Autowired
     MockMvc mockMvc;
 
@@ -41,7 +43,7 @@ public class ApiBidControllerIT {
     BidList RECORD_1 = new BidList("Acct1", "Typ1", 1.0);
     BidList RECORD_2 = new BidList("Acct2", "Typ2", 2.0);
     BidList RECORD_3 = new BidList("Acct3", "Typ3", 3.0);
-/*
+
     @Test
     public void getAllRecords_success() throws Exception {
         List<BidList> records = new ArrayList<>(Arrays.asList(RECORD_1, RECORD_2, RECORD_3));
@@ -72,14 +74,19 @@ public class ApiBidControllerIT {
     @Test
     @DisplayName("Create a bid with success")
     public void createARecord_success() throws Exception {
-
+        // ARRANGE
+        BidList RECORD_3 = new BidList(111,"a1", "t1", 11.0, null, null, null, null, null, null,null,null,null,null,null,null,null,null,null,null,null, null);
         Mockito.when(bidListRepository.save(RECORD_3)).thenReturn(RECORD_3);
-
+        // ACT
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/bid/create")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(JsonParser.asString(RECORD_3)))
-                .andExpect(status().isOk());
+                        .characterEncoding("utf-8")
+                        //.content("{\"bidList\":\"bidList\"}")
+                        .content(JsonParser.asString(RECORD_3))
+                )
+                .andExpect(status().isCreated());
+        // ASSERT
         //       Assert.assertNotNull();
     }
 

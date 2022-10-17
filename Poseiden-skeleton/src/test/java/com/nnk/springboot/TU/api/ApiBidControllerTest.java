@@ -103,6 +103,28 @@ public class ApiBidControllerTest {
         Assert.assertNotNull(re.getStatusCode());
     }
 
+    @Test
+    @DisplayName("Find one bid with success")
+    public void findOneRecord_success() throws Exception {
+        // ARRANGE
+        Mockito.when(bidListService.findById(1)).thenReturn(RECORD_2);
+        //ACT
+        ResponseEntity<BidList> re = apiBidController.findOneBid(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.FOUND, re.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Find one bid with failing")
+    public void findOneRecord_failing() throws Exception {
+        // ARRANGE
+        Mockito.when(bidListService.findById(1)).thenReturn(null);
+        //ACT
+        ResponseEntity<BidList> re = apiBidController.findOneBid(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.NOT_FOUND, re.getStatusCode());
+    }
+
 
     @Test
     @DisplayName("Update a bid with failing")

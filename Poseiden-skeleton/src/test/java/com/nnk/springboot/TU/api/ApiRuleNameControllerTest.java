@@ -2,6 +2,7 @@ package com.nnk.springboot.TU.api;
 
 import com.nnk.springboot.controllers.api.ApiRatingController;
 import com.nnk.springboot.controllers.api.ApiRuleNameController;
+import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.services.impl.RatingService;
@@ -131,5 +132,25 @@ public class ApiRuleNameControllerTest {
         Assert.assertNull(records);
     }
 
+    @Test
+    @DisplayName("Find one RuleName with success")
+    public void findOneRecord_success() throws Exception {
+        // ARRANGE
+        Mockito.when(ruleNameService.findById(1)).thenReturn(RECORD_2);
+        //ACT
+        ResponseEntity<RuleName> re = apiRuleNameController.findOneRuleName(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.FOUND, re.getStatusCode());
+    }
 
+    @Test
+    @DisplayName("Find one RuleName with failing")
+    public void findOneRecord_failing() throws Exception {
+        // ARRANGE
+        Mockito.when(ruleNameService.findById(1)).thenReturn(null);
+        //ACT
+        ResponseEntity<RuleName> re = apiRuleNameController.findOneRuleName(1);
+        // ASSERT
+        Assert.assertEquals(HttpStatus.NOT_FOUND, re.getStatusCode());
+    }
 }
