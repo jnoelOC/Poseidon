@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 public class TradeController {
-    public static final Logger logger = LogManager.getLogger(UserController.class);
+    public static final Logger logger = LogManager.getLogger(TradeController.class);
 
     @Autowired
     private TradeService tradeService;
@@ -27,7 +27,6 @@ public class TradeController {
     @RequestMapping("/trade/list")
     public String home(Model model)
     {
-        // TODO: find all Trade, add to model
         List<Trade> trades = tradeService.findAllTrades();
         logger.info("List all trades");
         model.addAttribute("trades", trades);
@@ -41,8 +40,6 @@ public class TradeController {
 
     @PostMapping("/trade/validate")
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Trade list
-
 
         if(trade.getAccount().isBlank()){
             model.addAttribute("errorMsgAccount", "Account est obligatoire");
@@ -76,9 +73,8 @@ public class TradeController {
 
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Trade by Id and to model then show to the form
 
-        Trade trade = tradeService.findById(id);  //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        Trade trade = tradeService.findById(id);
         logger.info("Get update trade by id");
         model.addAttribute("trade", trade);
 
@@ -88,8 +84,6 @@ public class TradeController {
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Trade and return Trade list
-
         if(trade.getAccount().isBlank()){
             model.addAttribute("errorMsgAccount", "Account est obligatoire");
             return "trade/add";
@@ -118,8 +112,6 @@ public class TradeController {
 
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Trade by Id and delete the Trade, return to Trade list
-
         Trade trade = tradeService.findById(id);
         tradeService.deleteTrade(trade);
         logger.info("delete trade by id");

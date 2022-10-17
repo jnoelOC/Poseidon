@@ -1,7 +1,0 @@
-
-m
-java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¹´ÌÈ8àøƒ°¬0
-_
-java:S1128"=Remove this unused import 'com.nnk.springboot.domain.Rating'.(ëê‹³şÿÿÿÿ8äøƒ°¬0
-i
-java:S1128"MRemove this unused import 'com.nnk.springboot.repositories.RatingRepository'.(Ü8åøƒ°¬0

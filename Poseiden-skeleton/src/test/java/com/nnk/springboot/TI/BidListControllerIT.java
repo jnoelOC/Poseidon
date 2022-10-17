@@ -58,6 +58,7 @@ public class BidListControllerIT {
 
         //THEN
         List<BidList> allBids = bidListRepository.findAll();
+        
     }
 
 

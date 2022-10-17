@@ -1,13 +1,0 @@
-
-A
-java:S1948"&Make "user" transient or serializable.(’Ø¾ıÿÿÿÿ
-H
-java:S1168"+Return an empty collection instead of null.(¥¹ï8¤çÊ…ª0
-]	java:S125"<This block of commented-out lines of code should be removed.(¯ºĞüÿÿÿÿ8 ÔÊ…ª0
-
-java:S1128"_Remove this unused import 'org.springframework.security.core.authority.SimpleGrantedAuthority'.(– ‹Ìûÿÿÿÿ8£ÔÊ…ª0
-M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8£ÔÊ…ª0
-M
-java:S1128
-"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ

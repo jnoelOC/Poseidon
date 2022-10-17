@@ -20,7 +20,6 @@ import java.util.List;
 
 @Controller
 public class CurvePointController {
-    // TODO: Inject Curve Point service
 
     public static final Logger logger = LogManager.getLogger(CurvePointController.class);
 
@@ -30,7 +29,6 @@ public class CurvePointController {
     @GetMapping("/curvePoint/list")
     public String home(Model model)
     {
-        // TODO: find all Curve Point, add to model
         List<CurvePoint> curvePoints = curvePointService.findAllCurvePoints();
         model.addAttribute("curvePoints", curvePoints);
         logger.info("Requête de Liste de CurvePoint");
@@ -44,7 +42,6 @@ public class CurvePointController {
 
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Curve list
         try {
             if (curvePoint.getCurveId() <= 0 || curvePoint == null) {
                 model.addAttribute("errorMsg", "doit ne pas être nul");
@@ -66,8 +63,8 @@ public class CurvePointController {
 
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get CurvePoint by Id and to model then show to the form
-        CurvePoint curvePoint = curvePointService.findById(id);  //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        CurvePoint curvePoint = curvePointService.findById(id);
         logger.info("Get CurvePoint Update");
         model.addAttribute("curvePoint", curvePoint);
         return "curvePoint/update";
@@ -76,7 +73,6 @@ public class CurvePointController {
     @PostMapping("/curvePoint/update/{id}")
     public String updateCP(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Curve and return Curve list
         try{
             if(curvePoint.getCurveId() <= 0 || curvePoint == null) {
                 logger.error("CurvePoint <= 0 OR null");
@@ -108,10 +104,8 @@ public class CurvePointController {
 
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteCP(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Curve by Id and delete the Curve, return to Curve list
 
             CurvePoint curvePoint = curvePointService.findById(id);
-            //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
             curvePointService.deleteCurvePoint(curvePoint);
             logger.info("Requête de Delete de CurvePoint");
             model.addAttribute("curvePoints", curvePointService.findAllCurvePoints());

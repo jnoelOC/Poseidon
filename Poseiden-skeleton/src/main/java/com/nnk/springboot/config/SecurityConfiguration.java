@@ -29,30 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(uds).passwordEncoder(passwordEncoder());
    }
-/*
-    @Override
-    public void configure(@NotNull HttpSecurity http) throws Exception
-    {
-        http.csrf().disable()
-                .authorizeRequests().antMatchers("/login**","/index**", "/js/**", "/css/**", "/img/**")
-                .permitAll()
-                .antMatchers("/user/*").hasAuthority("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true).clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-                .and()
-                .oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint()
-                .userService(oAuth2UserService);
-    }
-*/
+
     @Override
    public void configure(@NotNull HttpSecurity httpSecurity) throws Exception {
 
@@ -88,11 +65,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(10);
     }
 
-
+/*
     @Value("${spring.security.debug:false}")
     boolean securityDebug;
 
-/*    @Override
+    @Override
     public void configure(WebSecurity web) throws Exception {
         web.debug(securityDebug);
     }*/

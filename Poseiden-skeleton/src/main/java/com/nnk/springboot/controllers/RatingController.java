@@ -1,6 +1,5 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.services.impl.RatingService;
 import org.apache.logging.log4j.LogManager;
@@ -19,14 +18,13 @@ import java.util.List;
 
 @Controller
 public class RatingController {
-    public static final Logger logger = LogManager.getLogger(UserController.class);
+    public static final Logger logger = LogManager.getLogger(RatingController.class);
 @Autowired
 private RatingService ratingService;
 
     @RequestMapping("/rating/list")
     public String home(Model model)
     {
-        // TODO: find all Rating, add to model
         List<Rating> ratings = ratingService.findAllRatings();
         logger.info("find all ratings in list");
         model.addAttribute("ratings", ratings);
@@ -40,7 +38,7 @@ private RatingService ratingService;
 
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return Rating list
+
         if(rating.getMoodysRating().isBlank()){
             model.addAttribute("errorMsgMoodys", "moodysrating est obligatoire");
             return "rating/add";
@@ -69,9 +67,7 @@ private RatingService ratingService;
 
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get Rating by Id and to model then show to the form
-        Rating rating = ratingService.findById(id);  //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-
+        Rating rating = ratingService.findById(id);
         logger.info("Get update ratings by id");
         model.addAttribute("rating", rating);
         return "rating/update";
@@ -80,7 +76,6 @@ private RatingService ratingService;
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Rating and return Rating list
 
         if(rating.getOrderNumber() < 0 || rating.getOrderNumber() > 999999){
             model.addAttribute("errorMsgOrderNumber", "orderNumber est compris entre 0 et 999999");
@@ -105,9 +100,8 @@ private RatingService ratingService;
 
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Rating by Id and delete the Rating, return to Rating list
+
         Rating rating = ratingService.findById(id);
-        //.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         ratingService.deleteRating(rating);
         logger.info("delete rating by id");
         model.addAttribute("rating", ratingService.findAllRatings());

@@ -1,13 +1,0 @@
-
-]
-java:S1192B"GDefine a constant instead of duplicating this literal "/login" 4 times.(ü¢Å
-V	java:S125#"<This block of commented-out lines of code should be removed.(ÒÌâ–øÿÿÿÿ
-X	java:S125`"<This block of commented-out lines of code should be removed.(í–ÉŒ8®™ã¹³0
-Z
-java:S1128"=Remove this unused import 'org.springframework.core.Ordered'.(ˆ‹ˆƒ8‰–Î³0
-c
-java:S1128"FRemove this unused import 'org.springframework.core.annotation.Order'.(Ö¨æ8Š–Î³0
-
-java:S1128"dRemove this unused import 'org.springframework.security.config.annotation.web.builders.WebSecurity'.(–ëğ8¯™ã¹³0
-
-java:S1128"qRemove this unused import 'org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter'.(÷ìïŠ8Š–Î³0

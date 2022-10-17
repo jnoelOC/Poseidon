@@ -29,70 +29,47 @@ import javax.validation.constraints.NotNull;
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
 <span class="fc" id="L30">        auth.userDetailsService(uds).passwordEncoder(passwordEncoder());</span>
 <span class="fc" id="L31">   }</span>
-/*
-    @Override
-    public void configure(@NotNull HttpSecurity http) throws Exception
-    {
-        http.csrf().disable()
-                .authorizeRequests().antMatchers(&quot;/login**&quot;,&quot;/index**&quot;, &quot;/js/**&quot;, &quot;/css/**&quot;, &quot;/img/**&quot;)
-                .permitAll()
-                .antMatchers(&quot;/user/*&quot;).hasAuthority(&quot;ADMIN&quot;)
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage(&quot;/login&quot;).permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true).clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher(&quot;/logout&quot;))
-                .logoutSuccessUrl(&quot;/login?logout&quot;)
-                .permitAll()
-                .and()
-                .oauth2Login()
-                .loginPage(&quot;/login&quot;)
-                .userInfoEndpoint()
-                .userService(oAuth2UserService);
-    }
-*/
+
     @Override
    public void configure(@NotNull HttpSecurity httpSecurity) throws Exception {
 
-<span class="fc" id="L59">        httpSecurity</span>
-<span class="fc" id="L60">                .csrf().disable()</span>
-<span class="fc" id="L61">                .authorizeRequests()</span>
-<span class="fc" id="L62">                    .antMatchers(&quot;/login**&quot;, &quot;/templates/**&quot;, &quot;/css/*.css&quot;, &quot;/img/**&quot;).permitAll()</span>
-<span class="fc" id="L63">                    .antMatchers(&quot;/user/*&quot;).hasAuthority(&quot;ADMIN&quot;)</span>
-<span class="fc" id="L64">                .anyRequest().authenticated()</span>
-<span class="fc" id="L65">                .and()</span>
-<span class="fc" id="L66">                .formLogin().loginPage(&quot;/login&quot;).permitAll()</span>
-<span class="fc" id="L67">                .loginProcessingUrl(&quot;/login&quot;)</span>
-<span class="fc" id="L68">                .defaultSuccessUrl(&quot;/bidList/list&quot;, true)</span>
+<span class="fc" id="L36">        httpSecurity</span>
+<span class="fc" id="L37">                .csrf().disable()</span>
+<span class="fc" id="L38">                .authorizeRequests()</span>
+<span class="fc" id="L39">                    .antMatchers(&quot;/login**&quot;, &quot;/templates/**&quot;, &quot;/css/*.css&quot;, &quot;/img/**&quot;).permitAll()</span>
+<span class="fc" id="L40">                    .antMatchers(&quot;/user/*&quot;).hasAuthority(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L41">                .anyRequest().authenticated()</span>
+<span class="fc" id="L42">                .and()</span>
+<span class="fc" id="L43">                .formLogin().loginPage(&quot;/login&quot;).permitAll()</span>
+<span class="fc" id="L44">                .loginProcessingUrl(&quot;/login&quot;)</span>
+<span class="fc" id="L45">                .defaultSuccessUrl(&quot;/bidList/list&quot;, true)</span>
                 //.failureUrl(&quot;/login.html&quot;)
-<span class="fc" id="L70">                .and()</span>
-<span class="fc" id="L71">                .logout().logoutUrl(&quot;/logout&quot;).permitAll()</span>
-<span class="fc" id="L72">                .invalidateHttpSession(true).clearAuthentication(true)</span>
-<span class="fc" id="L73">                .logoutRequestMatcher(new AntPathRequestMatcher(&quot;/logout&quot;))</span>
-<span class="fc" id="L74">                .logoutSuccessUrl(&quot;/login&quot;)</span>
-<span class="fc" id="L75">                .deleteCookies(&quot;JSESSIONID&quot;)</span>
-<span class="fc" id="L76">                .and()</span>
-<span class="fc" id="L77">                .oauth2Login().loginPage(&quot;/login&quot;)</span>
-<span class="fc" id="L78">                .defaultSuccessUrl(&quot;/bidList/list&quot;, true)</span>
-<span class="fc" id="L79">                .userInfoEndpoint();</span>
+<span class="fc" id="L47">                .and()</span>
+<span class="fc" id="L48">                .logout().logoutUrl(&quot;/logout&quot;).permitAll()</span>
+<span class="fc" id="L49">                .invalidateHttpSession(true).clearAuthentication(true)</span>
+<span class="fc" id="L50">                .logoutRequestMatcher(new AntPathRequestMatcher(&quot;/logout&quot;))</span>
+<span class="fc" id="L51">                .logoutSuccessUrl(&quot;/login&quot;)</span>
+<span class="fc" id="L52">                .deleteCookies(&quot;JSESSIONID&quot;)</span>
+<span class="fc" id="L53">                .and()</span>
+<span class="fc" id="L54">                .oauth2Login().loginPage(&quot;/login&quot;)</span>
+<span class="fc" id="L55">                .defaultSuccessUrl(&quot;/bidList/list&quot;, true)</span>
+<span class="fc" id="L56">                .userInfoEndpoint();</span>
 
-<span class="fc" id="L81">    }</span>
+<span class="fc" id="L58">    }</span>
 
 
 
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-<span class="fc" id="L88">        return new BCryptPasswordEncoder(10);</span>
+<span class="fc" id="L65">        return new BCryptPasswordEncoder(10);</span>
     }
 
-
+/*
     @Value(&quot;${spring.security.debug:false}&quot;)
     boolean securityDebug;
 
-/*    @Override
+    @Override
     public void configure(WebSecurity web) throws Exception {
         web.debug(securityDebug);
     }*/

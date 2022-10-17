@@ -127,6 +127,12 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<configuration>
+					<excludes>
+						<exclude>**/domain/*</exclude>
+						<exclude>**/domain/validators/password/*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -163,6 +169,12 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<configuration>
+					<excludes>
+						<exclude>**/domain/*</exclude>
+						<exclude>**/domain/validators/password/*</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
