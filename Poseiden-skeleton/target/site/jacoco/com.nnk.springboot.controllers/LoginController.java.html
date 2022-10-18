@@ -15,40 +15,33 @@ import javax.annotation.security.RolesAllowed;
 
 <span class="fc" id="L16">    public static final Logger logger = LogManager.getLogger(LoginController.class);</span>
 
- /*   @Autowired
-    private BidListService bidListService;
-
-
-    @Autowired
-    private PasswordConstraintValidator passwordConstraintValidator;*/
-
     @GetMapping(&quot;/login&quot;)
     //@RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
     public ModelAndView login(User user) {
-<span class="nc" id="L28">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L21">        ModelAndView mav = new ModelAndView();</span>
 
-<span class="nc" id="L30">        mav.setViewName(&quot;login&quot;);</span>
-<span class="nc" id="L31">        logger.info(&quot;Get Login&quot;);</span>
-<span class="nc" id="L32">        return mav;</span>
+<span class="nc" id="L23">        mav.setViewName(&quot;login&quot;);</span>
+<span class="nc" id="L24">        logger.info(&quot;Get Login&quot;);</span>
+<span class="nc" id="L25">        return mav;</span>
     }
 
     @GetMapping(&quot;/logout&quot;)
     @RolesAllowed({&quot;USER&quot;, &quot;ADMIN&quot;})
     public ModelAndView logout() {
-<span class="nc" id="L38">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L39">        mav.setViewName(&quot;login&quot;);</span>
-<span class="nc" id="L40">        logger.info(&quot;Get Logout&quot;);</span>
-<span class="nc" id="L41">        return mav;</span>
+<span class="nc" id="L31">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L32">        mav.setViewName(&quot;login&quot;);</span>
+<span class="nc" id="L33">        logger.info(&quot;Get Logout&quot;);</span>
+<span class="nc" id="L34">        return mav;</span>
     }
 
     @GetMapping(&quot;/templates/error&quot;)
     public ModelAndView error() {
-<span class="nc" id="L46">        ModelAndView mav = new ModelAndView();</span>
-<span class="nc" id="L47">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>
-<span class="nc" id="L48">        mav.addObject(&quot;errorMsg&quot;, errorMessage);</span>
-<span class="nc" id="L49">        mav.setViewName(&quot;error/403&quot;);</span>
-<span class="nc" id="L50">        logger.error(&quot;Get 403&quot;);</span>
-<span class="nc" id="L51">        return mav;</span>
+<span class="nc" id="L39">        ModelAndView mav = new ModelAndView();</span>
+<span class="nc" id="L40">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>
+<span class="nc" id="L41">        mav.addObject(&quot;errorMsg&quot;, errorMessage);</span>
+<span class="nc" id="L42">        mav.setViewName(&quot;error/403&quot;);</span>
+<span class="nc" id="L43">        logger.error(&quot;Get 403&quot;);</span>
+<span class="nc" id="L44">        return mav;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

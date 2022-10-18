@@ -36,97 +36,98 @@ import java.util.List;
 
     @GetMapping(&quot;/bidList/add&quot;)
     public String addBidForm(BidList bid) {
-<span class="fc" id="L39">        return &quot;bidList/add&quot;;</span>
+<span class="fc" id="L39">        logger.info(&quot;Requête (Get) de Add de BidList&quot;);</span>
+<span class="fc" id="L40">        return &quot;bidList/add&quot;;</span>
     }
 
     @PostMapping(&quot;/bidList/validate&quot;)
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
 
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if(bid.getAccount().isBlank()){</span>
-<span class="fc" id="L46">            model.addAttribute(&quot;errorMsgAccount&quot;, &quot;Account est obligatoire&quot;);</span>
-<span class="fc" id="L47">            return &quot;bidList/add&quot;;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if(bid.getAccount().isBlank()){</span>
+<span class="fc" id="L47">            model.addAttribute(&quot;errorMsgAccount&quot;, &quot;Account est obligatoire&quot;);</span>
+<span class="fc" id="L48">            return &quot;bidList/add&quot;;</span>
         }
 
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(bid.getType().isBlank()){</span>
-<span class="fc" id="L51">            model.addAttribute(&quot;errorMsgType&quot;, &quot;Type est obligatoire&quot;);</span>
-<span class="fc" id="L52">            return &quot;bidList/add&quot;;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if(bid.getType().isBlank()){</span>
+<span class="fc" id="L52">            model.addAttribute(&quot;errorMsgType&quot;, &quot;Type est obligatoire&quot;);</span>
+<span class="fc" id="L53">            return &quot;bidList/add&quot;;</span>
         }
 
         try {
-<span class="pc bpc" id="L56" title="1 of 2 branches missed.">            if (bid.getBidQuantity().isNaN()) {</span>
-<span class="nc" id="L57">                model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
-<span class="nc" id="L58">                return &quot;bidList/add&quot;;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            if (bid.getBidQuantity().isNaN()) {</span>
+<span class="nc" id="L58">                model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
+<span class="nc" id="L59">                return &quot;bidList/add&quot;;</span>
             }
-<span class="fc" id="L60">        }catch(Exception ex){</span>
-<span class="fc" id="L61">            logger.error(ex.getMessage());</span>
-<span class="fc" id="L62">            model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
-<span class="fc" id="L63">            return &quot;bidList/add&quot;;</span>
-<span class="fc" id="L64">        }</span>
+<span class="fc" id="L61">        }catch(Exception ex){</span>
+<span class="fc" id="L62">            logger.error(ex.getMessage());</span>
+<span class="fc" id="L63">            model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
+<span class="fc" id="L64">            return &quot;bidList/add&quot;;</span>
+<span class="fc" id="L65">        }</span>
 
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (!result.hasErrors()) {</span>
-<span class="fc" id="L67">            bidListService.saveBidList(bid);</span>
-<span class="fc" id="L68">            model.addAttribute(&quot;bids&quot;, bidListService.findAllBids());</span>
-<span class="fc" id="L69">            logger.info(&quot;Requête de Add de BidList&quot;);</span>
-<span class="fc" id="L70">            return &quot;redirect:/bidList/list&quot;;</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (!result.hasErrors()) {</span>
+<span class="fc" id="L68">            bidListService.saveBidList(bid);</span>
+<span class="fc" id="L69">            model.addAttribute(&quot;bids&quot;, bidListService.findAllBids());</span>
+<span class="fc" id="L70">            logger.info(&quot;Requête (Post) de Add de BidList&quot;);</span>
+<span class="fc" id="L71">            return &quot;redirect:/bidList/list&quot;;</span>
         }
-<span class="nc" id="L72">        return &quot;bidList/add&quot;;</span>
+<span class="nc" id="L73">        return &quot;bidList/add&quot;;</span>
     }
 
     @GetMapping(&quot;/bidList/update/{id}&quot;)
     public String showUpdateForm(@PathVariable(&quot;id&quot;) Integer id, Model model) {
 
-<span class="fc" id="L78">        BidList bidList = bidListService.findById(id);</span>
+<span class="fc" id="L79">        BidList bidList = bidListService.findById(id);</span>
 
-<span class="fc" id="L80">        model.addAttribute(&quot;bidList&quot;, bidList);</span>
-<span class="fc" id="L81">        return &quot;bidList/update&quot;;</span>
+<span class="fc" id="L81">        model.addAttribute(&quot;bidList&quot;, bidList);</span>
+<span class="fc" id="L82">        return &quot;bidList/update&quot;;</span>
     }
 
     @PostMapping(&quot;/bidList/update/{id}&quot;)
     public String updateBid(@PathVariable(&quot;id&quot;) Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
 
-<span class="fc bfc" id="L88" title="All 2 branches covered.">        if(bidList.getAccount().isBlank()){</span>
-<span class="fc" id="L89">            model.addAttribute(&quot;errorMsgAccount&quot;, &quot;Account est obligatoire&quot;);</span>
-<span class="fc" id="L90">            return &quot;bidList/update&quot;;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if(bidList.getAccount().isBlank()){</span>
+<span class="fc" id="L90">            model.addAttribute(&quot;errorMsgAccount&quot;, &quot;Account est obligatoire&quot;);</span>
+<span class="fc" id="L91">            return &quot;bidList/update&quot;;</span>
         }
-<span class="fc bfc" id="L92" title="All 2 branches covered.">        if(bidList.getType().isBlank()){</span>
-<span class="fc" id="L93">            model.addAttribute(&quot;errorMsgType&quot;, &quot;Type est obligatoire&quot;);</span>
-<span class="fc" id="L94">            return &quot;bidList/update&quot;;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if(bidList.getType().isBlank()){</span>
+<span class="fc" id="L94">            model.addAttribute(&quot;errorMsgType&quot;, &quot;Type est obligatoire&quot;);</span>
+<span class="fc" id="L95">            return &quot;bidList/update&quot;;</span>
         }
 
         try {
-<span class="pc bpc" id="L98" title="1 of 2 branches missed.">            if (bidList.getBidQuantity().isNaN()) {</span>
-<span class="nc" id="L99">                model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
-<span class="nc" id="L100">                return &quot;bidList/update&quot;;</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">            if (bidList.getBidQuantity().isNaN()) {</span>
+<span class="nc" id="L100">                model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
+<span class="nc" id="L101">                return &quot;bidList/update&quot;;</span>
             }
-<span class="fc" id="L102">        }catch(Exception ex){</span>
-<span class="fc" id="L103">            logger.error(ex.getMessage());</span>
-<span class="fc" id="L104">            model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
-<span class="fc" id="L105">            return &quot;bidList/update&quot;;</span>
-<span class="fc" id="L106">        }</span>
+<span class="fc" id="L103">        }catch(Exception ex){</span>
+<span class="fc" id="L104">            logger.error(ex.getMessage());</span>
+<span class="fc" id="L105">            model.addAttribute(&quot;errorMsgBidQty&quot;, &quot;BidQuantity est obligatoire et doit être un nombre&quot;);</span>
+<span class="fc" id="L106">            return &quot;bidList/update&quot;;</span>
+<span class="fc" id="L107">        }</span>
 
-<span class="pc bpc" id="L108" title="1 of 2 branches missed.">        if (result.hasErrors()) {</span>
-<span class="nc" id="L109">            return &quot;bidList/update&quot;;</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (result.hasErrors()) {</span>
+<span class="nc" id="L110">            return &quot;bidList/update&quot;;</span>
         }
-<span class="fc" id="L111">       bidList.setBidListId(id);</span>
+<span class="fc" id="L112">       bidList.setBidListId(id);</span>
 
-<span class="fc" id="L113">        BidList bidList1 = bidListService.saveBidList(bidList);</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        if(bidList1 == null) {</span>
-<span class="fc" id="L115">            return &quot;bidList/update&quot;;</span>
+<span class="fc" id="L114">        BidList bidList1 = bidListService.saveBidList(bidList);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        if(bidList1 == null) {</span>
+<span class="fc" id="L116">            return &quot;bidList/update&quot;;</span>
         }
-<span class="fc" id="L117">        model.addAttribute(&quot;bidList&quot;, bidListService.findAllBids());</span>
-<span class="fc" id="L118">        logger.info(&quot;Requête de Update de BidList&quot;);</span>
-<span class="fc" id="L119">        return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L118">        model.addAttribute(&quot;bidList&quot;, bidListService.findAllBids());</span>
+<span class="fc" id="L119">        logger.info(&quot;Requête de Update de BidList&quot;);</span>
+<span class="fc" id="L120">        return &quot;redirect:/bidList/list&quot;;</span>
     }
 
     @GetMapping(&quot;/bidList/delete/{id}&quot;)
     public String deleteBid(@PathVariable(&quot;id&quot;) Integer id, Model model) {
 
-<span class="fc" id="L125">            BidList bidList = bidListService.findById(id);</span>
-<span class="fc" id="L126">            bidListService.deleteBidList(bidList);</span>
-<span class="fc" id="L127">            logger.info(&quot;Requête de Delete de BidList&quot;);</span>
-<span class="fc" id="L128">            model.addAttribute(&quot;bidList&quot;, bidListService.findAllBids());</span>
-<span class="fc" id="L129">        return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L126">            BidList bidList = bidListService.findById(id);</span>
+<span class="fc" id="L127">            bidListService.deleteBidList(bidList);</span>
+<span class="fc" id="L128">            logger.info(&quot;Requête de Delete de BidList&quot;);</span>
+<span class="fc" id="L129">            model.addAttribute(&quot;bidList&quot;, bidListService.findAllBids());</span>
+<span class="fc" id="L130">        return &quot;redirect:/bidList/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

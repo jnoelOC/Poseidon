@@ -36,6 +36,7 @@ public class BidListController {
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+        logger.info("Requête (Get) de Add de BidList");
         return "bidList/add";
     }
 
@@ -66,7 +67,7 @@ public class BidListController {
         if (!result.hasErrors()) {
             bidListService.saveBidList(bid);
             model.addAttribute("bids", bidListService.findAllBids());
-            logger.info("Requête de Add de BidList");
+            logger.info("Requête (Post) de Add de BidList");
             return "redirect:/bidList/list";
         }
         return "bidList/add";
